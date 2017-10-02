@@ -31,7 +31,8 @@ router.use(
     }
 );
 
-// Route to test (accessed at GET http://localhost:9090/api)
+// port stands for the port that is set in Server.js
+// Route to test (accessed at GET http://localhost:port/api) 
 router.get('/',
     (req, res) => res.json({ message: '*** Sudoku Rest API is working fine! ***' })
 );
@@ -40,8 +41,8 @@ router.get('/',
 // REST API
 //---> ON /sudokus
 
-//    POST (create one) -> create a Sudoku (accessed at POST http://localhost:9090/sudokus)
-//    GET  (get all) -> gets all the sudokus (accessed at GET http://localhost:9090/api/sudokus)
+//    POST (create one) -> create a Sudoku (accessed at POST http://localhost:port/api/sudokus)
+//    GET  (get all) -> gets all the sudokus (accessed at GET http://localhost:port/api/sudokus)
 
 // the post method will insert a new sudoku, an initialized one
 
