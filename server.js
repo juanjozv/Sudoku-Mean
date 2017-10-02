@@ -29,7 +29,6 @@ let port = process.env.PORT || 8080; // set  port (default 8080)
 
 // APP settings
 // REGISTER STATIC
-// See https://expressjs.com/en/starter/static-files.html
 //app.use('/static', express.static((__dirname + '/dist')));
 app.use(express.static(path.join(__dirname, 'dist')))
 
