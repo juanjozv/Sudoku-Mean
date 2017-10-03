@@ -6,6 +6,7 @@ import { SudokuComponent } from './components/sudoku/sudoku.component';
 import { OptionsComponent } from './components/options/options.component';
 import { TimeComponent } from './components/time/time.component';
 import { ButtonsPanelComponent } from './components/buttons-panel/buttons-panel.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { ButtonsPanelComponent } from './components/buttons-panel/buttons-panel.
     SudokuComponent,
     OptionsComponent,
     TimeComponent,
-    ButtonsPanelComponent
+    ButtonsPanelComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule
