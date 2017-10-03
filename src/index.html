@@ -2,13 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>MeanSpa</title>
+  <title>Sudoku</title>
   <base href="/">
-
+  <link rel="stylesheet" media="screen" href="styles.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>      
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
   <app-root></app-root>
 </body>
+<script>
+    $(document).ready(function () {
+     
+         $('.hint').focus(function () {
+             $(this).css("background-color", "#81F79F")
+                 .keydown(function (e) {
+                     if (e.keyCode === 8) $(this).val("");
+                 })
+                 .keypress(function (e) {
+                     if (!isNaN(String.fromCharCode(e.which)) && String.fromCharCode(e.which) != 0) {
+                         event.preventDefault(); //stop character from entering input
+                         var v = String.fromCharCode(e.which)
+                         $(this).val(v);
+                     }
+                 })
+         })
+             .blur(function () {
+                 $(this).css("background-color", "white");
+             })
+     
+     })
+ </script>
+
 </html>
