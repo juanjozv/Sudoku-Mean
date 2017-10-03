@@ -5,13 +5,15 @@ import { AppComponent } from './app.component';
 import { SudokuComponent } from './components/sudoku/sudoku.component';
 import { OptionsComponent } from './components/options/options.component';
 import { TimeComponent } from './components/time/time.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SudokuComponent,
     OptionsComponent,
-    TimeComponent
+    TimeComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule
