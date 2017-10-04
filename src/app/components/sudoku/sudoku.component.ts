@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import * as SudokuView from './sudokuView';
-import { HttpModule } from '@angular/http';
 import { SudokuService } from '../../services/sudoku.service';
 
 @Component({
   selector: 'app-sudoku',
   templateUrl: './sudoku.component.html',
   styleUrls: ['./sudoku.component.css'],
-  providers: [ HttpModule ]
+  providers: [ SudokuService ]
 })
 export class SudokuComponent implements OnInit {
   s: any

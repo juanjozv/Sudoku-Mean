@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { SudokuComponent } from './components/sudoku/sudoku.component';
 import { OptionsComponent } from './components/options/options.component';
@@ -18,7 +18,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     NavbarComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
