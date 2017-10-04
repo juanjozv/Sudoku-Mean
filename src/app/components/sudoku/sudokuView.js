@@ -1,18 +1,18 @@
 const NEVER = x => false;
 
 let createFill = (td, tr) => {
-   return $('<input type="int"/>').attr({
-            class : "hint",
+    return $('<input type="int"/>').attr({
+            class: "hint",
             maxlength: "1",
             size: "1",
             readonly: "",
             value: ""
         })
         .appendTo($('<td />')
-        .attr({
+            .attr({
                 class: td
-        })
-        .appendTo(tr));
+            })
+            .appendTo(tr));
 }
 
 function* sudokuTableGenerator(start = 0, next = x => x + 1, stop = NEVER) {
@@ -28,7 +28,7 @@ function* sudokuTableGenerator(start = 0, next = x => x + 1, stop = NEVER) {
             tr = $('<tr />');
             row++;
             (row % 3 == 0) ? tdBorderClass = 'lox': tdBorderClass = 'lx';
-            (row % 3 == 0) ? tdNormalClass = 'ox' : tdNormalClass = 'nx';
+            (row % 3 == 0) ? tdNormalClass = 'ox': tdNormalClass = 'nx';
         }
         column % 3 == 0 ? td = tdBorderClass : td = tdNormalClass;
         input = createFill(td, tr);
@@ -39,19 +39,24 @@ function* sudokuTableGenerator(start = 0, next = x => x + 1, stop = NEVER) {
 }
 
 class SudokuView {
-    constructor(start, next, stop){
-        this.references = [];
-		[this.start, this.delta, this.stop] = [start, next, stop];
-	}
-	[Symbol.iterator](){
-	  this.iter = sudokuTableGenerator(this.start, this.delta, this.stop);
-      return this;
-	}
-	next(){
-		return this.iter.next();
+    constructor(start, next, stop) {
+            this.references = [];
+            [this.start, this.delta, this.stop] = [start, next, stop];
+        }
+        [Symbol.iterator]() {
+            this.iter = sudokuTableGenerator(this.start, this.delta, this.stop);
+            return this;
+        }
+    next() {
+        return this.iter.next();
     }
-    create(){
-        for(let i of this) this.references.push(i);      
+    create() {
+        for (let i of this) this.references.push(i);
+    }
+    paint(newMatrix) {
+        newMatrix.forEach((row, i) =>
+            row.forEach((num, j) => this.references[j + 9 * i].val(num))
+        );
     }
 }
 
@@ -63,4 +68,4 @@ let createSudokuView = () => {
 }
 
 
-module.exports = SudokuView
+module.exports = SudokuView;

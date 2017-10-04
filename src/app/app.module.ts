@@ -18,9 +18,22 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     NavbarComponent
   ],
   imports: [
-    BrowserModule,HttpModule
+    BrowserModule, HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  matrix: any;
+
+  constructor(private _appComponent: AppComponent, private _sudokuComponent: SudokuComponent,
+    private _optionsComponent: OptionsComponent, private _timeComponent: TimeComponent,
+    private _buttonsPanelComponent: ButtonsPanelComponent, private _navbarComponent: NavbarComponent) {
+  }
+
+  paint() {
+    
+  }
+
+}
