@@ -8,7 +8,7 @@
 
 let express = require('express');
 let mongoose = require('mongoose');
-let sudokuEntity = require('../../src/assets/sudoku.js');
+let SudokuEntity = require('../../src/assets/sudoku.js');
 
 // Connection to the database
 mongoose.connect('mongodb://localhost/sudokus', {
@@ -50,13 +50,12 @@ router.get('/',
 router.route('/sudokus')
     .post(
         (req, res) => {
-            console.log('POST requested: ' + req.body.name);
             let sudoku = new Sudoku(); // create a new instance of the Sudoku model
             // Extract data from request
             console.log('Post body ' + JSON.stringify(req.body));
             sudoku.user = req.body.user;
+            sudoku.difficulty = req.body.difficulty;
             sudoku.lastPlayed = req.body.lastPlayed;
-            sudoku.sudokuSolution = req.body.sudokuSolution;
             sudoku.playableSudoku = req.body.playableSudoku;
             /**
              * Aqui van las extracciones de los atributos del sudoku. 
@@ -65,7 +64,6 @@ router.route('/sudokus')
                 (err) => {
                     if (err)
                         res.send(err);
-                    console.log('Post Error = ' + err);
                     res.json({ message: 'Sudoku created succesfully!', "sudokuId": sudoku._id });
                 }
             );
@@ -143,6 +141,23 @@ router.route('/sudokus/:sudoku_id')
 
 //Algoritm Methods
 
-
+//Creates a new Soduku, used in the button: "nuevo"
+router.route('/sudokus/newSudoku')
+    .get(
+        (req, res) => {
+            let s = new SudokuEntity(9);
+            s.generate();
+            s.solveSudoku(0, 0);
+            let playableSudokuValues = {};
+            let clue = true;
+            let object = { user: req.body.user, difficulty: req.body.difficulty, lastPlayed: req.body.lastPlayed, playableSudoku: [] };
+            for (let actualValue of s) {
+                (actualValue.num != ' ') ? clue = true: clue = false;
+                playableSudokuValues = { x: actualValue.row, y: actualValue.col, value: actualValue.num, isClue: clue };
+                object.playableSudoku.push(playableSudokuValues);
+            }
+            res.send(JSON.stringify(s));
+        }
+    );
 
 module.exports = router;
