@@ -8,6 +8,7 @@
 
 let express = require('express');
 let mongoose = require('mongoose');
+let sudokuEntity = require('../../src/assets/sudoku.js');
 
 // Connection to the database
 mongoose.connect('mongodb://localhost/sudokus', {
@@ -139,5 +140,9 @@ router.route('/sudokus/:sudoku_id')
             );
         }
     );
+
+//Algoritm Methods
+
+
 
 module.exports = router;
