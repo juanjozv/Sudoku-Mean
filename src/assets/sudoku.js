@@ -65,6 +65,8 @@ function* sudokuGenerator(start = 0, next = x => x + 1, stoprow = i => i == 8, s
     return { done: true }
 }
 
+
+
 class Sudoku {
     constructor(n) {
             this.table = Array.from({ length: n }, () => new Array(n));
@@ -177,7 +179,6 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 
-
 function test() {
 
 
@@ -199,4 +200,4 @@ function test() {
 //test();
 module.exports = {
     Sudoku
-}
+};

@@ -1,34 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import * as SudokuView from './sudokuView';
 import { SudokuService } from '../../services/sudoku.service';
+import $ from 'jquery';
 
 @Component({
   selector: 'app-sudoku',
   templateUrl: './sudoku.component.html',
   styleUrls: ['./sudoku.component.css'],
-  providers: [SudokuService]
+  providers: [SudokuService, SudokuView]
 })
 export class SudokuComponent implements OnInit {
   matrix: any
-  _sudokuView: any;
+  _sudokuView: any = new SudokuView();
   constructor(private _sudokuService: SudokuService) {
-    
   }
 
   ngOnInit() {
-    //this._sudokuView = new SudokuView(0, x => x + 1, x => x > 81);
-    //this._sudokuView.create();
+    this._sudokuView.create();
   }
 
-  //paintSudokuComponent(toPaintMatrix: any) {
-  // this._sudokuView.paint(toPaintMatrix);
-  // }
+  
   createNewSudoku() {
 
     this._sudokuService.getNewSudoku('leo', 'normal', 'hoy').subscribe(res => { this.paintSudokuView(res) });
 
 
   }
+  
   paintSudokuView(res_) {
     console.log(res_);
     this.matrix = res_;
@@ -40,8 +38,6 @@ export class SudokuComponent implements OnInit {
     });
     this.matrix = newMatrix;
     console.log(this.matrix);
-    this._sudokuView = new SudokuView(0, x => x + 1, x => x > 81);
-    this._sudokuView.create();
     this._sudokuView.paint(this.matrix);
   }
 }
