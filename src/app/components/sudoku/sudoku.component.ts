@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as SudokuView from './sudokuView';
 import { SudokuService } from '../../services/sudoku.service';
-import $ from 'jquery';
 
 @Component({
   selector: 'app-sudoku',
@@ -19,12 +18,8 @@ export class SudokuComponent implements OnInit {
     this._sudokuView.create();
   }
 
-  
   createNewSudoku() {
-
     this._sudokuService.getNewSudoku('leo', 'normal', 'hoy').subscribe(res => { this.paintSudokuView(res) });
-
-
   }
   
   paintSudokuView(res_) {

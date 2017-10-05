@@ -5,10 +5,12 @@
  * @since 2017
  */
 
+const { Sudoku } = require('../../src/assets/sudoku.js');
+const { Random } = require('../../src/assets/random.js');
 
 let express = require('express');
 let mongoose = require('mongoose');
-const { Sudoku } = require('../../src/assets/sudoku.js');
+const random = new Random();
 
 // Connection to the database
 mongoose.connect('mongodb://localhost/sudokus', {
@@ -141,20 +143,23 @@ router.route('/sudokus/:sudoku_id')
 
 //Algoritm Methods
 
+
 //Creates a new Soduku, used in the button: "nuevo"
 router.route('/sudokus')
     .get(
         (req, res) => {
             let s = new Sudoku(9);
-            s.generate;
-            s.solveSudoku(0, 0);
+          
+          //  s.generate;
+           // s.solveSudoku(0, 0);
             var playableSudokuValues = {};
-            let clue = true;
+            let clue = 0;
             //let object = { user: req.body.user, difficulty: req.body.difficulty, lastPlayed: req.body.lastPlayed, playableSudoku: [] };
             let object = { user: 'LEO', difficulty: 'easy', lastPlayed: '09/09/2017', playableSudoku: [] };
             for (let actualValue of s) {
-                (actualValue.num != ' ') ? clue = true: clue = false;
-                playableSudokuValues = { x: actualValue.row, y: actualValue.col, value: actualValue.num, isClue: clue };
+                clue = random.getRandomInt(1, 5);
+                (clue == 3 || clue == 1) ? playableSudokuValues = { x: actualValue.row, y: actualValue.col, value: actualValue.num, isClue: true } 
+                                         : playableSudokuValues = { x: actualValue.row, y: actualValue.col, value: ' ', isClue: false }
                 object.playableSudoku.push(playableSudokuValues);
             }
 

@@ -1,11 +1,13 @@
 const numbers = Array.from({ length: 9 }, (v, i) => i + 1);
 const coordinates = [];
+const { Random } = require('./random.js');
+const random = new Random();
 
 // este metodo lo que hace es un yield del primer numero con las coordenadas con las que empieza el patron
 function* initialSudokuNumberGenerator(start = 0, next = x => x + 3, stop = x => x == 9, possibleValues) {
     // se genera un random de 0 a possibleValues.length de modo que se elija una posicion cualquiera
     //del array y así elegir un número desocupado un numero desocupado
-    let pos = getRandomInt(0, possibleValues.length),
+    let pos = random.getRandomInt(0, possibleValues.length),
         number = possibleValues[pos],
         row = 0,
         column = 0,
@@ -31,7 +33,7 @@ function* sudokuGenerator(start = 0, next = x => x + 1, stoprow = i => i == 8, s
     let row, col, pos, number, lastNumberCoordinates, cell, possibleValues = Array.from({ length: 9 }, (v, i) => i + 1);
     yield* initialSudokuNumberGenerator(0, x => x + 3, x => x == 9, possibleValues); // se hace yield del primer paso del patron
     for (let i = start; !stoprow(i);) { // i < 8 debido a que ya se ingresó un número de 9 en la matriz
-        pos = getRandomInt(0, possibleValues.length), // lo mismo que el anterior, se elije una posicion random y su respectivo numero
+        pos = random.getRandomInt(0, possibleValues.length), // lo mismo que el anterior, se elije una posicion random y su respectivo numero
             number = possibleValues[pos],
             lastNumberCoordinates = coordinates.pop(), // se le hace pop a el array de cordenadas para así tener todas las coordenadas del numero ingresado anteriormente
             coordinates.push([]), // se ingresa un array que tendrá las coordenadas del numero ingresado actualmente
@@ -125,7 +127,7 @@ class Sudoku {
         return Array.from({ length: 9 }, (v, i) => i + 1)
             .filter(n => busyValues.indexOf(n) == -1);
     }
-
+    
     solveSudoku(row, column) {
         var auxRow, auxColumn, possibleValues,
             // método que busca la siguiente celda desocupada de la matriz,
@@ -172,12 +174,12 @@ class Sudoku {
     }
 
 }
-
-function getRandomInt(min, max) {
+/*let getRandomInt = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-}
+}*/
+
 
 function test() {
 
@@ -200,4 +202,5 @@ function test() {
 //test();
 module.exports = {
     Sudoku
+
 };
