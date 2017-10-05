@@ -19,5 +19,5 @@ export class OptionsComponent implements OnInit {
       $('#timer').html(this.t.getTimeValues().toString());
     });*/
   }
-
+  
 }

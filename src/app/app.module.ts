@@ -25,16 +25,4 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 })
 export class AppModule {
 
-  matrix: any;
-
-  constructor(private _appComponent: AppComponent, private _sudokuComponent: SudokuComponent,
-    private _optionsComponent: OptionsComponent, private _timeComponent: TimeComponent,
-    private _buttonsPanelComponent: ButtonsPanelComponent, private _navbarComponent: NavbarComponent) {
-  }
-
-  paintApp() {
-    this._sudokuComponent.paintSudokuComponent(this.matrix);
-    
-  }
-
 }

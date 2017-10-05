@@ -197,3 +197,6 @@ function test() {
     console.log(s.table);
 }
 //test();
+module.exports = {
+    Sudoku
+}

@@ -68,4 +68,4 @@ let createSudokuView = () => {
 }
 
 
-module.exports = SudokuView;
+module.exports = SudokuView

@@ -8,7 +8,7 @@
 
 let express = require('express');
 let mongoose = require('mongoose');
-let SudokuEntity = require('../../src/assets/sudoku.js');
+const { Sudoku } = require('../../src/assets/sudoku.js');
 
 // Connection to the database
 mongoose.connect('mongodb://localhost/sudokus', {
@@ -16,7 +16,7 @@ mongoose.connect('mongodb://localhost/sudokus', {
 });
 
 // Data Model Required
-let Sudoku = require('../../db/models/sudokuModel.js');
+let SudokuModel = require('../../db/models/sudokuModel.js');
 
 // API SETUP
 
@@ -47,10 +47,10 @@ router.get('/',
 
 // the post method will insert a new sudoku, an initialized one
 
-router.route('/sudokus')
+router.route('/sudokuss')
     .post(
         (req, res) => {
-            let sudoku = new Sudoku(); // create a new instance of the Sudoku model
+            let sudoku = new SudokuModel(); // create a new instance of the Sudoku model
             // Extract data from request
             console.log('Post body ' + JSON.stringify(req.body));
             sudoku.user = req.body.user;
@@ -142,21 +142,24 @@ router.route('/sudokus/:sudoku_id')
 //Algoritm Methods
 
 //Creates a new Soduku, used in the button: "nuevo"
-router.route('/sudokus/newSudoku')
+router.route('/sudokus')
     .get(
         (req, res) => {
-            let s = new SudokuEntity(9);
-            s.generate();
+            let s = new Sudoku(9);
+            s.generate;
             s.solveSudoku(0, 0);
-            let playableSudokuValues = {};
+            var playableSudokuValues = {};
             let clue = true;
-            let object = { user: req.body.user, difficulty: req.body.difficulty, lastPlayed: req.body.lastPlayed, playableSudoku: [] };
+            //let object = { user: req.body.user, difficulty: req.body.difficulty, lastPlayed: req.body.lastPlayed, playableSudoku: [] };
+            let object = { user: 'LEO', difficulty: 'easy', lastPlayed: '09/09/2017', playableSudoku: [] };
             for (let actualValue of s) {
                 (actualValue.num != ' ') ? clue = true: clue = false;
                 playableSudokuValues = { x: actualValue.row, y: actualValue.col, value: actualValue.num, isClue: clue };
                 object.playableSudoku.push(playableSudokuValues);
             }
-            res.send(JSON.stringify(s));
+
+            //console.log(JSON.stringify(object))
+            res.json(object);
         }
     );
 
