@@ -55,7 +55,11 @@ class SudokuView {
     }
     paint(newMatrix) {
         newMatrix.forEach((row, i) =>
-            row.forEach((num, j) => $('#' + (j + 9 * i).toString()).val(num)
+            row.forEach((num, j) => {   
+                    $('#' + (j + 9 * i).toString()).prop('disabled', false);
+                    $('#' + (j + 9 * i).toString()).val(num)
+                    if(num != ' ') $('#' + (j + 9 * i).toString()).prop('disabled', true);
+                }                                                        
           )); 
       }
     
