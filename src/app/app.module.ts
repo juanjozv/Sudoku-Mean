@@ -32,7 +32,8 @@ export class AppModule {
     private _buttonsPanelComponent: ButtonsPanelComponent, private _navbarComponent: NavbarComponent) {
   }
 
-  paint() {
+  paintApp() {
+    this._sudokuComponent.paintSudokuComponent(this.matrix);
     
   }
 
