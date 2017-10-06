@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="icon" href="./assets/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -36,6 +37,26 @@
             })
 
     })
+
+    //Methods for the Timer
+    let minutesLabel = $('#minutes');
+    let secondsLabel = $('#seconds');
+    let totalSeconds = 0;
+
+
+    let setTime = () => {
+        ++totalSeconds;
+        secondsLabel.html(pad(totalSeconds % 60));
+        minutesLabel.html(pad(parseInt(totalSeconds / 60)));
+    }
+
+    let pad = (val) => {
+        let valString = val + "";
+        if (valString.length < 2) return "0" + valString;
+        return valString;
+    }
+
+    setInterval(setTime, 1000);
 </script>
 
 </html>
