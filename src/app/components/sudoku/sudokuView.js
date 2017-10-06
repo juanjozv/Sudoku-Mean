@@ -16,7 +16,7 @@ let createFill = (td, tr, id) => {
             .appendTo(tr));
 }
 
-function* sudokuTableGenerator(start = 0, next = x => x + 1, stop = NEVER) {
+function* sudokuViewGenerator(start = 0, next = x => x + 1, stop = NEVER) {
     let tr = $('<tr />'),
         tdBorderClass = 'lox',
         tdNormalClass = 'ox',
@@ -39,19 +39,27 @@ function* sudokuTableGenerator(start = 0, next = x => x + 1, stop = NEVER) {
     return { done: true }
 }
 
+function* sudokuViewIterator(start = 0, next = x => x + 1, stop = NEVER) {
+    for (let i = start; !stop(i);) {
+        yield $('#' + i.toString());
+        i = next(i);
+    }
+}
+
 class SudokuView {
     constructor() {
             [this.start, this.delta, this.stop] = [0, x => x + 1, x => x > 81];
         }
         [Symbol.iterator]() {
-            this.iter = sudokuTableGenerator(this.start, this.delta, this.stop);
+            this.iter = sudokuViewIterator(this.start, this.delta, this.stop);
             return this;
         }
     next() {
         return this.iter.next();
     }
     create() {
-        for (let i of this);
+        let gen = sudokuViewGenerator(this.start, this.delta, this.stop);
+        for (let i of gen);
     }
     paint(newMatrix) {
         newMatrix.forEach((row, i) =>
@@ -61,15 +69,11 @@ class SudokuView {
                 if (num != ' ') $('#' + (j + 9 * i).toString()).prop('disabled', true);
             }));
     }
-    getMatrix(matrix_) {
-        let matrixAux = matrix_;
-        let value;
-        matrix_.forEach((row, i) =>
-            row.forEach((num, j) => {
-                value = $('#' + (j + 9 * i).toString()).val();
-                (value === ' ') ? matrixAux[i][j] = value: matrixAux[i][j] = parseInt(value);
-            }));
-        return matrixAux;
+    getMatrix() {
+        return Array.from({length: 9}, (row, i) => 
+                    Array.from({length: 9}, (value, j) => 
+                        ($('#' + (j + 9 * i).toString()).val() != " ") ? parseInt($('#' + (j + 9 * i).toString()).val())
+                                                                       : $('#' + (j + 9 * i).toString()).val()));      
     }
 
 }

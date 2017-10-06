@@ -69,12 +69,12 @@ function* sudokuGenerator(start = 0, next = x => x + 1, stoprow = i => i == 8, s
 
 
 
-class Sudoku {
+class SudokuGen {
     constructor(n) {
-            this.table = Array.from({ length: n }, () => new Array(n));
+            /*this.table = Array.from({ length: n }, () => new Array(n));
             this.rows = Array.from({ length: n }, (v, i) => []);
             this.columns = Array.from({ length: n }, (v, i) => []);
-            this.sections = Array.from({ length: n / 3 }, (v, i) => Array.from({ length: n / 3 }, (v, i) => []));
+            this.sections = Array.from({ length: n / 3 }, (v, i) => Array.from({ length: n / 3 }, (v, i) => []));*/
             [this.start, this.delta, this.stopRow, this.stopCol] = [0, x => x + 1, i => i == 8, j => j == 9];
         }
         [Symbol.iterator]() {
@@ -84,7 +84,7 @@ class Sudoku {
     next() {
         return this.iter.next();
     }
-    get generate() {
+    /*get generate() {
         this.table.forEach(v => v.fill(' '));
         this.rows.forEach(i => i.fill([]));
         this.columns.forEach(j => j.fill([]));
@@ -96,8 +96,8 @@ class Sudoku {
         this.rows = rows;
         this.columns = columns;
         this.sections = sections;
-    }
-    generateSudoku() {
+    }*/
+    /*generateSudoku() {
         let yes;
         for (let cell of this) {
             yes = getRandomInt(1, 4);
@@ -110,9 +110,9 @@ class Sudoku {
         }
     }
     getNextFreeSquare(row) {
-        /*(column + 9 * row) // esto sirve para ubicar la posicion equivalente de la matriz en un array
+        (column + 9 * row) // esto sirve para ubicar la posicion equivalente de la matriz en un array
         	row = Math.floor(i / 9) // posicion equivalente de la fila de la matriz como si se recorriera un array
-        	column = i % 9; */ // lo mismo de arriba pero con la columnas
+        	column = i % 9;  // lo mismo de arriba pero con la columnas
 
         let i = row;
         while (i < 9) {
@@ -177,7 +177,7 @@ class Sudoku {
         }
         //se retorna true cuando ya no haya una siguiente celda de la matriz que llenar
         return true;
-    }
+    }*/
 
 }
 /*let getRandomInt = (min, max) => {
@@ -207,6 +207,6 @@ function test() {
 }
 //test();
 module.exports = {
-    Sudoku
+    SudokuGen
 
 };

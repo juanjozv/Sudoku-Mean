@@ -26,5 +26,8 @@ export class ButtonsPanelComponent implements OnInit {
   reload(){
     this._sudokuComponent.reload();
   }
+  solveSudoku(){
+    this._sudokuComponent.solveSudoku();
+  }
 
 }

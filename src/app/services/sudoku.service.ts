@@ -24,7 +24,15 @@ export class SudokuService {
   checkSudoku(matrix) {
     //console.log(matrix);
     //console.log(JSON.stringify(matrix));
-    let _url = './api/checkSudoku/'+JSON.stringify(matrix) ;
+    let _url = './api/checkSudoku/'+ JSON.stringify(matrix) ;
+    console.log(_url);
+    return this._http.get(_url)
+      .map((response: Response) => {return response.json()});
+  }
+  solveSudoku(matrix) {
+    //console.log(matrix);
+    //console.log(JSON.stringify(matrix));
+    let _url = './api/solveSudoku/'+ JSON.stringify(matrix) ;
     console.log(_url);
     return this._http.get(_url)
       .map((response: Response) => {return response.json()});

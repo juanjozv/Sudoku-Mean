@@ -11,12 +11,14 @@ import $ from 'jquery';
 })
 export class SudokuComponent implements OnInit {
   _sudokuView: any = new SudokuView();
-  private _matrix: any ; 
+  private _matrix: any;
   constructor(private _sudokuService: SudokuService) {
+    this._matrix = Array.from({ length: 9 }, () => new Array(9));
   }
 
   ngOnInit() {
     this._sudokuView.create();
+
   }
 
   createNewSudoku() {
@@ -24,28 +26,27 @@ export class SudokuComponent implements OnInit {
   }
 
   paintSudokuView(res_) {
-    //console.log(res_);
-    let newMatrix = Array.from({ length: 9 }, () => new Array(9));
-    //console.log(newMatrix);
     res_.playableSudoku.forEach(elem => {
-      newMatrix[elem.x][elem.y] = elem.value;
+      this._matrix[elem.x][elem.y] = elem.value;
     });
-    console.log(newMatrix);
-    this._matrix=newMatrix;
-    this._sudokuView.paint(newMatrix);
+    this._sudokuView.paint(this._matrix);
   }
 
-  checkSudoku(){
+  checkSudoku() {
     //console.log(this._matrix);
-    let matrixAux =  this._sudokuView.getMatrix(this._matrix);
-    
+    let matrixAux = this._sudokuView.getMatrix();
     console.log(matrixAux);
     this._sudokuService.checkSudoku(matrixAux).subscribe(res => { this.result(res) });
   }
-  result(_res){
+
+  solveSudoku() {
+    this._sudokuService.solveSudoku(this._matrix).subscribe(res => { this._sudokuView.paint(res); });
+  }
+
+  result(_res) {
     window.alert(_res.text);
   }
-  reload(){
+  reload() {
     this._sudokuView.paint(this._matrix);
   }
 }
