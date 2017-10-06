@@ -15,12 +15,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  openLogIn() {
-    this._navbarView.openlogInModal();
-  }
-
-  closeLogIn() {
-    this._navbarView.closeLogInModal();
-  }
+  
 
 }
