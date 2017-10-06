@@ -20,5 +20,11 @@ export class ButtonsPanelComponent implements OnInit {
   generateNewSudoku() {
      this._sudokuComponent.createNewSudoku();
   }
+  checkSudoku(){
+    this._sudokuComponent.checkSudoku();
+  }
+  reload(){
+    this._sudokuComponent.reload();
+  }
 
 }

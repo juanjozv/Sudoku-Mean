@@ -91,6 +91,12 @@ class Sudoku {
         this.sections.forEach(i => i.forEach(j => j.fill([])));
         this.generateSudoku();
     }
+    setSudoku(table, rows, columns, sections) {
+        this.table = table;
+        this.rows = rows;
+        this.columns = columns;
+        this.sections = sections;
+    }
     generateSudoku() {
         let yes;
         for (let cell of this) {
@@ -127,7 +133,7 @@ class Sudoku {
         return Array.from({ length: 9 }, (v, i) => i + 1)
             .filter(n => busyValues.indexOf(n) == -1);
     }
-    
+
     solveSudoku(row, column) {
         var auxRow, auxColumn, possibleValues,
             // método que busca la siguiente celda desocupada de la matriz,
