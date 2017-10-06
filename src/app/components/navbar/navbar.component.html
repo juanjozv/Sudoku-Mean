@@ -1,10 +1,33 @@
 <nav class="navbar navbar-inverse" style="padding:0.5%; background-color:#032B4D;">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">SUDOKU</a>
-            </div>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Login</a></li>
-            </ul>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">PARADIGMAS DE PROGRAMACIÓN</a>
         </div>
-    </nav>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a data-target="#loginModal" data-toggle="modal" id="login"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="cerrarLogin" data-target="#loginModal" data-toggle="modal" id="close">&times;</span>
+            <h2>Iniciar sesión</h2>
+        </div>
+        <div class="modal-body" ALIGN="center">
+            <br><br>
+            <img src="../../../assets/usuario.png" style="width:100px;height:100px;">
+            <br><br>
+            <div class="input-group" id="loginInputs">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input id="usuario" type="text" class="form-control" placeholder="Ingrese su nombre de usuario">
+            </div>
+            <br>
+            <div class="btn-group btn-group-lg" id="ingresar">
+                <button type="submit" class="btn btn-primary" id="btnIngresar">Ingresar</button>
+            </div>
+            <br><br>
+        </div>
+    </div>
+</div>
