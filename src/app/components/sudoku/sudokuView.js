@@ -61,6 +61,16 @@ class SudokuView {
                 if (num != ' ') $('#' + (j + 9 * i).toString()).prop('disabled', true);
             }));
     }
+    getMatrix(matrix_) {
+        let matrixAux = matrix_;
+        let value;
+        matrix_.forEach((row, i) =>
+            row.forEach((num, j) => {
+                value = $('#' + (j + 9 * i).toString()).val();
+                (value === ' ') ? matrixAux[i][j] = value: matrixAux[i][j] = parseInt(value);
+            }));
+        return matrixAux;
+    }
 
 }
 
