@@ -33,9 +33,8 @@ export class SudokuComponent implements OnInit {
   }
 
   checkSudoku() {
-    //console.log(this._matrix);
+
     let matrixAux = this._sudokuView.getMatrix();
-    console.log(matrixAux);
     this._sudokuService.checkSudoku(matrixAux).subscribe(res => { this.result(res) });
   }
 
