@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import * as Timer from './timerView';
-import $ from 'jquery';
+
 
 @Component({
   selector: 'app-time',

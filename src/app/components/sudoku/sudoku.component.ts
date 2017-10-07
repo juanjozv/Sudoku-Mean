@@ -45,6 +45,8 @@ export class SudokuComponent implements OnInit {
 
   result(_res) {
     window.alert(_res.text);
+   /* $('#msgCheck').text(_res);
+    $('#checkModal').modal();*/
   }
   reload() {
     this._sudokuView.paint(this._matrix);

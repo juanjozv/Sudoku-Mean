@@ -34,10 +34,10 @@ function* sudokuGenerator(start = 0, next = x => x + 1, stoprow = i => i == 8, s
     yield* initialSudokuNumberGenerator(0, x => x + 3, x => x == 9, possibleValues); // se hace yield del primer paso del patron
     for (let i = start; !stoprow(i);) { // i < 8 debido a que ya se ingresó un número de 9 en la matriz
         pos = random.getRandomInt(0, possibleValues.length), // lo mismo que el anterior, se elije una posicion random y su respectivo numero
-            number = possibleValues[pos],
-            lastNumberCoordinates = coordinates.pop(), // se le hace pop a el array de cordenadas para así tener todas las coordenadas del numero ingresado anteriormente
-            coordinates.push([]), // se ingresa un array que tendrá las coordenadas del numero ingresado actualmente
-            possibleValues.splice(pos, 1); // se elimina el numero ingresado para que no se repita
+        number = possibleValues[pos],
+        lastNumberCoordinates = coordinates.pop(), // se le hace pop a el array de cordenadas para así tener todas las coordenadas del numero ingresado anteriormente
+        coordinates.push([]), // se ingresa un array que tendrá las coordenadas del numero ingresado actualmente
+        possibleValues.splice(pos, 1); // se elimina el numero ingresado para que no se repita
 
         for (let j = start; !stopcol(j);) {
             if ((j + 1) % 3 == 0) { // si la cuadricula de referencia a la actual está debajo de esta 

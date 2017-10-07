@@ -78,12 +78,4 @@ class SudokuView {
 
 }
 
-
-let createSudokuView = () => {
-    var sudokuView = new SudokuView(0, x => x + 1, x => x > 81);
-    sudokuView.create();
-    return sudokuView;
-}
-
-
 module.exports = SudokuView

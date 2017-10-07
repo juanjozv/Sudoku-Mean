@@ -5,10 +5,10 @@
  * @since 2017
  */
 
-const { SudokuGen } = require('../../src/assets/sudokuGen.js');
-const { SudokuSolver } = require('../../src/assets/sudokuSolver.js');
-const { Random } = require('../../src/assets/random.js');
-const { Sudoku } = require('../../src/assets/sudoku.js');
+const { SudokuGen } = require('../../src/assets/javascripts/sudokuGen.js');
+const { SudokuSolver } = require('../../src/assets/javascripts/sudokuSolver.js');
+const { Random } = require('../../src/assets/javascripts/random.js');
+const { Sudoku } = require('../../src/assets/javascripts/sudoku.js');
 
 let express = require('express');
 let mongoose = require('mongoose');

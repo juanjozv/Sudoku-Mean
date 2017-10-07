@@ -3,29 +3,32 @@
         <i class="fa fa-bell fa-fw"></i> Sudoku Options
     </div>
     <div class="panel-body ">
-        <!--<div class="list-group">
-            <a (click)="generateNewSudoku()" class="list-group-item">
-                 Nuevo
-            </a>
-            <a href="#" class="list-group-item">
-                <i class="fa fa-twitter fa-fw"></i> Reiniciar
-            </a>
-            <a href="#" class="list-group-item">
-                <i class="fa fa-envelope fa-fw"></i> Comprobar
-            </a>
-            <a href="#" class="list-group-item">
-                <i class="fa fa-tasks fa-fw"></i> Resolver
-            </a>
-        </div>-->
-
-        <button (click)="generateNewSudoku()" type="button" class="btn btn-primary btn-lg btn-block">
-                <span class="glyphicon glyphicon-play"></span>&nbsp;Nuevo</button>
-        <button (click)="reload()" type="button" class="btn btn-primary btn-lg btn-block">
-                <span class="glyphicon glyphicon-repeat"></span>&nbsp;Reiniciar</button>
-        <button (click)="checkSudoku()" type="button" class="btn btn-primary btn-lg btn-block">
-                <span class="glyphicon glyphicon-check"></span>&nbsp;Comprobar</button>
-        <button (click)="solveSudoku()" type="button" class="btn btn-primary btn-lg btn-block">
-                <span class="glyphicon glyphicon-flash"></span>&nbsp;Resolver</button>
+        
+        <button (click)="generateNewSudoku()" type="button" class="btn btn-primary btn-block">
+                <span class="glyphicon glyphicon-play"></span>&nbsp;New Sudoku</button>
+        <button (click)="reload()" type="button" class="btn btn-primary btn-block">
+                <span class="glyphicon glyphicon-repeat"></span>&nbsp;Restart</button>
+        <button (click)="checkSudoku()" type="button" class="btn btn-primary btn-block">
+                <span class="glyphicon glyphicon-check"></span>&nbsp;Check Solution</button>
+        <button (click)="solveSudoku()" type="button" class="btn btn-primary btn-block">
+                <span class="glyphicon glyphicon-flash"></span>&nbsp;Solve</button>
 
     </div>
 </div>
+<div id="checkModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span data-target="#loginModal" data-toggle="modal" id="close">&times;</span>
+                <h2>Sudoku Checked!</h2>
+            </div>
+            <div class="modal-body" ALIGN="center">
+                <br><br>
+                <p id="msgCheck" style="font-family: 'Bemis'; font-size: 20px; color:black"></p>
+                <br><br>
+                <div class="btn-group btn-group-lg">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" >OK</button>
+                </div>
+                <br><br>
+            </div>
+        </div>
+    </div>

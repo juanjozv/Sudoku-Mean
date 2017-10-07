@@ -1,6 +1,9 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <app-navbar></app-navbar>
-
+<div ALIGN="center">
+    <h4>SUDOKU</h4>
+</div>
+<hr>
 <div class="container-fluid">
     <div class="row content">
         <div class="col-sm-2 sidenav">
@@ -8,23 +11,11 @@
             <br>
             <app-time></app-time>
         </div>
-
-        <div class="col-sm-9">
-                <div ALIGN = "center"><h4>SUDOKU</h4></div>
-                <hr>
-            <div class="container-fluid">
-
-                <div class="row">
-                    <div class="col-sm-7">
-                            
-                        <app-sudoku></app-sudoku>
-                    </div>
-                    <div class="col-sm-5">
-                        <app-buttons-panel></app-buttons-panel>
-                    </div>
-                </div>
-            </div>
-
+        <div class="col-sm-4" style="margin-left:5%">
+            <app-sudoku></app-sudoku>
+        </div>
+        <div class="col-sm-3">
+            <app-buttons-panel></app-buttons-panel>
         </div>
     </div>
 </div>
