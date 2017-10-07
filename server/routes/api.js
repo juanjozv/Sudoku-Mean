@@ -8,10 +8,14 @@
 const { SudokuGen } = require('../../src/assets/sudokuGen.js');
 const { SudokuSolver } = require('../../src/assets/sudokuSolver.js');
 const { Random } = require('../../src/assets/random.js');
+const { Sudoku } = require('../../src/assets/sudoku.js');
 
 let express = require('express');
 let mongoose = require('mongoose');
+
 const random = new Random();
+const Solver = new SudokuSolver();
+const sudokuGen = new SudokuGen(9);
 
 // Connection to the database
 mongoose.connect('mongodb://localhost/sudokus', {
@@ -149,7 +153,7 @@ router.route('/sudokus/:sudoku_id')
 router.route('/newSudoku')
     .get(
     (req, res) => {
-        let s = new SudokuGen(9);
+        //let s = new SudokuGen(9);
 
         //  s.generate;
         // s.solveSudoku(0, 0);
@@ -157,7 +161,7 @@ router.route('/newSudoku')
         let clue = 0;
         //let object = { user: req.body.user, difficulty: req.body.difficulty, lastPlayed: req.body.lastPlayed, playableSudoku: [] };
         let object = { user: 'LEO', difficulty: 'easy', lastPlayed: '09/09/2017', playableSudoku: [] };
-        for (let actualValue of s) {
+        for (let actualValue of sudokuGen) {
             clue = random.getRandomInt(1, 5);
             (clue == 3 || clue == 1) ? playableSudokuValues = { x: actualValue.row, y: actualValue.col, value: actualValue.num, isClue: true } : playableSudokuValues = { x: actualValue.row, y: actualValue.col, value: ' ', isClue: false }
             object.playableSudoku.push(playableSudokuValues);
@@ -171,11 +175,7 @@ router.route('/newSudoku')
 router.route('/solveSudoku/:matrix')
     .get(
     (req, res) => {
-       // console.log(req.params.matrix);
-        let matrix = JSON.parse(req.params.matrix);
-       // matrix = JSON.parse(matrix);
-        console.log(matrix);
-        // let matrixAux = matrix;
+        let matrix = JSON.parse(req.params.matrix);    
         let obj = {
             table: matrix,
             rows: Array.from({ length: 9 }, v => []),
@@ -191,33 +191,24 @@ router.route('/solveSudoku/:matrix')
                 }
             })
         });
-        console.log(obj.rows);
-        console.log(obj.columns);
-        console.log(obj.sections);
-       // console.log(rows, '---------------------', columns, '---------------------', sections);
-        let s = new SudokuSolver(obj);
-        //s.setSudoku(table, rows, columns, sections);
-        let result = s.solveSudoku(0, 0);
-        console.log(s.table);
-       // console.log(result);
-         res.json(s.table);
-        //res.json(result);
+       
+        let s = new Sudoku(obj) 
+        let result = Solver.getSudokuSolution(s);
+        res.json(result);
+       
     }
     );
-    router.route('/checkSudoku/:matrix')
+router.route('/checkSudoku/:matrix')
     .get(
     (req, res) => {
-       // console.log(req.params.matrix);
-        let matrix = JSON.parse(req.params.matrix);
-       // matrix = JSON.parse(matrix);
-        console.log(matrix);
-        // let matrixAux = matrix;
-        let obj = {
-            table: matrix,
-            rows: Array.from({ length: 9 }, v => []),
-            columns: Array.from({ length: 9 }, v => []),
-            sections: Array.from({ length: 3 }, (v, i) => Array.from({ length: 3 }, (v, i) => []))
-        }
+
+        let matrix = JSON.parse(req.params.matrix),
+            obj = {
+                table: matrix,
+                rows: Array.from({ length: 9 }, v => []),
+                columns: Array.from({ length: 9 }, v => []),
+                sections: Array.from({ length: 3 }, v => Array.from({ length: 3 }, v => []))
+            }
         obj.table.forEach((row, i) => {
             row.forEach((value, j) => {
                 if (value != " ") {
@@ -227,17 +218,10 @@ router.route('/solveSudoku/:matrix')
                 }
             })
         });
-        console.log(obj.rows);
-        console.log(obj.columns);
-        console.log(obj.sections);
-       // console.log(rows, '---------------------', columns, '---------------------', sections);
-        let s = new SudokuSolver(obj);
-        //s.setSudoku(table, rows, columns, sections);
-        let result = s.solveSudoku(0, 0);
-        console.log(s.table);
-       // console.log(result);
+
+        let s = new Sudoku(obj);
+        let result = Solver.hasSolution(s);
         (result) ? res.json({ text: 'Sudoku have solution!!' }) : res.json({ text: 'Sudoku dont have solution!!' })
-        //res.json(result);
     }
     );
 

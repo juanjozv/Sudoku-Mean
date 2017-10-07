@@ -71,10 +71,6 @@ function* sudokuGenerator(start = 0, next = x => x + 1, stoprow = i => i == 8, s
 
 class SudokuGen {
     constructor(n) {
-            /*this.table = Array.from({ length: n }, () => new Array(n));
-            this.rows = Array.from({ length: n }, (v, i) => []);
-            this.columns = Array.from({ length: n }, (v, i) => []);
-            this.sections = Array.from({ length: n / 3 }, (v, i) => Array.from({ length: n / 3 }, (v, i) => []));*/
             [this.start, this.delta, this.stopRow, this.stopCol] = [0, x => x + 1, i => i == 8, j => j == 9];
         }
         [Symbol.iterator]() {
@@ -84,129 +80,8 @@ class SudokuGen {
     next() {
         return this.iter.next();
     }
-    /*get generate() {
-        this.table.forEach(v => v.fill(' '));
-        this.rows.forEach(i => i.fill([]));
-        this.columns.forEach(j => j.fill([]));
-        this.sections.forEach(i => i.forEach(j => j.fill([])));
-        this.generateSudoku();
-    }
-    setSudoku(table, rows, columns, sections) {
-        this.table = table;
-        this.rows = rows;
-        this.columns = columns;
-        this.sections = sections;
-    }*/
-    /*generateSudoku() {
-        let yes;
-        for (let cell of this) {
-            yes = getRandomInt(1, 4);
-            if (yes % 2 == 0) {
-                this.rows[cell.row].push(cell.num);
-                this.columns[cell.col].push(cell.num);
-                this.sections[Math.floor(cell.row / 3)][Math.floor(cell.col / 3)].push(cell.num);
-                this.table[cell.row][cell.col] = cell.num;
-            }
-        }
-    }
-    getNextFreeSquare(row) {
-        (column + 9 * row) // esto sirve para ubicar la posicion equivalente de la matriz en un array
-        	row = Math.floor(i / 9) // posicion equivalente de la fila de la matriz como si se recorriera un array
-        	column = i % 9;  // lo mismo de arriba pero con la columnas
-
-        let i = row;
-        while (i < 9) {
-            if (this.table[i].indexOf(' ') != -1) // se verifica que haya un espacio vacío en la fila correspondiente
-                return { row: i, column: this.table[i].indexOf(' ') }; //si lo hay se retorna un objeto con la fila y 
-            //la columna que corresponden al espacio vacío más cercano
-            i++; // se baja a la siguiente fila si no hay espacios desocupados
-        }
-        return null // se retorna null cuando la matriz ya esté llena
-    }
-    getPossibleValues(row, column) {
-        // se unen todos los valores de una fila, columna y cuadricula correspondientes
-        var busyValues = this.rows[row].concat(this.columns[column])
-            .concat(this.sections[Math.floor(row / 3)][Math.floor(column / 3)]);
-        // se le aplica un filter a un array con numeros de 1 a 9,
-        // de modo que si el valor actual no se encuentra en ninguno de los arrays
-        //anteriores, aplicarle filter y utilizarlo
-        return Array.from({ length: 9 }, (v, i) => i + 1)
-            .filter(n => busyValues.indexOf(n) == -1);
-    }
-
-    solveSudoku(row, column) {
-        var auxRow, auxColumn, possibleValues,
-            // método que busca la siguiente celda desocupada de la matriz,
-            // y devuelve un object con dos properties: row y column
-            nextFreeSquare = this.getNextFreeSquare(row);
-        // si existe una siguiente celda para llenar
-        if (nextFreeSquare) {
-            auxRow = nextFreeSquare.row;
-            auxColumn = nextFreeSquare.column;
-
-            //método que retorna un array con los posibles valores de una celda
-            possibleValues = this.getPossibleValues(auxRow, auxColumn);
-
-            //se empiezan a probar los posibles valores a colocar
-            for (let number of possibleValues) {
-                // se ingresa el valor actual a la matriz
-                this.table[auxRow][auxColumn] = number;
-                // se ingresa el valor en la fila, columna y cuadrícula correspondientes
-                this.rows[auxRow].push(number);
-                this.columns[auxColumn].push(number);
-                //Math.floor(auxRow/auxCol / 3) -> Saber en que cuadricula nos encontramos
-                this.sections[Math.floor(auxRow / 3)][Math.floor(auxColumn / 3)].push(number);
-
-                // hace un llamado recursivo, de modo que se repita el mismo proceso, pero en la
-                //siguiente cuadrícula y con posibles valores distintos
-                if (this.solveSudoku(auxRow, auxColumn)) {
-                    return true;
-
-                } else {
-                    // en caso de que el array de los posibles valores esté vacío o bien, se termine
-                    // de recorrer, se entra en el else y se elimina el valor ingresado anteriormente
-                    this.table[auxRow][auxColumn] = ' ';
-                    this.rows[auxRow].pop();
-                    this.columns[auxColumn].pop();
-                    this.sections[Math.floor(auxRow / 3)][Math.floor(auxColumn / 3)].pop();
-                }
-            }
-            //retorna false en caso de que no se haya podido ingresar un nuevo valor, se sale de la llamada
-            //recursiva actual y pasa al else de arriba (aqui empieza el backtrack)
-            return false;
-        }
-        //se retorna true cuando ya no haya una siguiente celda de la matriz que llenar
-        return true;
-    }*/
-
 }
-/*let getRandomInt = (min, max) => {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-}*/
 
-
-function test() {
-
-
-
-    var s = new Sudoku(9);
-    s.generate;
-    console.log(s.table);
-    //console.log(s.getNextFreeSquare(0,0));
-    s.solveSudoku(0, 0);
-    //console.log(s.rows);
-
-    console.log(s.table);
-    s.generate;
-
-    console.log(s.table);
-    s.solveSudoku(0, 0);
-    console.log(s.table);
-}
-//test();
 module.exports = {
     SudokuGen
-
 };
