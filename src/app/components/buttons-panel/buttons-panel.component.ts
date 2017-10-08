@@ -15,15 +15,16 @@ export class ButtonsPanelComponent implements OnInit {
   newMatrix: any = Array.from({ length: 9 }, () => new Array(9));
   JSONMatrix: any;
   // _timeComponent: any = new TimeComponent();
-  constructor(private _sudokuService: SudokuService, private _sudokuComponent: SudokuComponent) { }
+  constructor(private _sudokuService: SudokuService, private _sudokuComponent: SudokuComponent, private _timeComponent: TimeComponent) { }
 
   ngOnInit() {
+  
   }
 
   generateNewSudoku() {
-    this._sudokuComponent.createNewSudoku();
-    // this._timeComponent.stopTimer();
-    // this._timeComponent.startTimer();
+      this._sudokuComponent.createNewSudoku();
+     this._timeComponent.stopTimer();
+     this._timeComponent.startTimer();
   }
   checkSudoku(){
     this._sudokuComponent.checkSudoku();

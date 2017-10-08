@@ -12,6 +12,7 @@ export class TimeComponent implements OnInit {
   _myTimer: any = new Timer();
   constructor(private _elementRef: ElementRef) { }
   ngOnInit() {
+    //this.startTimer();
   }
 
   startTimer() {

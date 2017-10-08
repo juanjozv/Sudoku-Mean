@@ -14,27 +14,22 @@ let mypad = val => {
 */
 class Timer {
     constructor() {
-            this.timerID = 'undef';
-            this.restart = false;
-            this.minutesLabel = document.getElementById('minutes'); //$('#minutes');
-            this.secondsLabel = document.getElementById('seconds') //$('#seconds');
-        }
-        // pad(val) {
-        //     let valString = val + "";
-        //     if (valString.length < 2) return "0" + valString;
-        //     return valString;
-        // }
+        this.timerID = 'undef';
+        this.restart = false;
+    }
+    // pad(val) {
+    //     let valString = val + "";
+    //     if (valString.length < 2) return "0" + valString;
+    //     return valString;
+    // }
 
     setTime() {
-        (this.restart) ? totalSeconds = 0: ++totalSeconds;
-        console.log(totalSeconds);
+        (this.restart) ? totalSeconds = 0 : ++totalSeconds;
         this.restart = false;
         let var1 = mypad(totalSeconds % 60);
         let var2 = mypad(parseInt(totalSeconds / 60))
-            //this.secondsLabel.html(var1);
-            //this.minutesLabel.html(var2);
-        this.secondsLabel.innerHTML(var1);
-        this.minutesLabel.innerHTML(var2);
+        $('#seconds').text(var1);
+        $('#minutes').text(var2);
     }
 
     startTimer() {
