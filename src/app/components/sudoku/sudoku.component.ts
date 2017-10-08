@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import * as SudokuView from './sudokuView';
 import { SudokuService } from '../../services/sudoku.service';
+import { TimeComponent } from '../time/time.component';
 import $ from 'jquery';
 
 @Component({
   selector: 'app-sudoku',
   templateUrl: './sudoku.component.html',
   styleUrls: ['./sudoku.component.css'],
-  providers: [SudokuService, SudokuView]
+  providers: [TimeComponent, SudokuService, SudokuView]
 })
 export class SudokuComponent implements OnInit {
   _sudokuView: any = new SudokuView();
+  //_timeComponent: any = new TimeComponent();
   private _matrix: any;
   constructor(private _sudokuService: SudokuService) {
     this._matrix = Array.from({ length: 9 }, () => new Array(9));
@@ -23,6 +25,8 @@ export class SudokuComponent implements OnInit {
 
   createNewSudoku() {
     this._sudokuService.getNewSudoku('leo', 'normal', 'hoy').subscribe(res => { this.paintSudokuView(res); });
+    // this._timeComponent.stopTimer();
+    // this._timeComponent.startTimer();
   }
 
   paintSudokuView(res_) {
@@ -40,13 +44,16 @@ export class SudokuComponent implements OnInit {
 
   solveSudoku() {
     this._sudokuService.solveSudoku(this._matrix).subscribe(res => { this._sudokuView.paint(res); });
+    // this._timeComponent.stopTimer();
   }
 
   result(_res) {
-    //window.alert(_res.text);
+    // window.alert(_res.text);
     this._sudokuView.checkModal(_res.text);
   }
   reload() {
     this._sudokuView.paint(this._matrix);
+    // this._timeComponent.stopTimer();
+    // this._timeComponent.startTimer();
   }
 }

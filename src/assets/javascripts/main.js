@@ -38,11 +38,42 @@ $(document).ready(function() {
                 $(this).val(v);
             }
         })
-
 })
 
+/*let minutesLabel = $('#minutes');
+let secondsLabel = $('#seconds');
+let totalSeconds = 0;
+
+class Timer {
+    constructor() {
+        this.timerID = 'undef';
+        this.restart = false;
+    }
+    setTime() {
+        (this.restart) ? totalSeconds = 0: ++totalSeconds;
+        console.log(totalSeconds);
+        this.restart = false;
+        secondsLabel.html(pad(totalSeconds % 60));
+        minutesLabel.html(pad(parseInt(totalSeconds / 60)));
+    }
+    pad(val) {
+        let valString = val + "";
+        if (valString.length < 2) return "0" + valString;
+        return valString;
+    }
+    startTimer() {
+        this.timerID = setInterval(setTime, 1000);
+    }
+    stopTimer() {
+        this.restart = true;
+        clearInterval(this.timerID);
+    }
+}
+
+module.exports = Timer
+
 //Methods for the Timer
-let minutesLabel = $('#minutes');
+/*let minutesLabel = $('#minutes');
 let secondsLabel = $('#seconds');
 let totalSeconds = 0;
 
@@ -59,4 +90,5 @@ let pad = (val) => {
     return valString;
 }
 
-setInterval(setTime, 1000);
+//This executes the timer
+//var mytimer = setInterval(setTime, 1000); */
