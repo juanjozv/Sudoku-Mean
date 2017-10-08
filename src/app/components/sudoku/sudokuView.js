@@ -70,10 +70,14 @@ class SudokuView {
             }));
     }
     getMatrix() {
-        return Array.from({length: 9}, (row, i) => 
-                    Array.from({length: 9}, (value, j) => 
-                        ($('#' + (j + 9 * i).toString()).val() != " ") ? parseInt($('#' + (j + 9 * i).toString()).val())
-                                                                       : $('#' + (j + 9 * i).toString()).val()));      
+        return Array.from({ length: 9 }, (row, i) =>
+            Array.from({ length: 9 }, (value, j) =>
+                ($('#' + (j + 9 * i).toString()).val() != " ") ? parseInt($('#' + (j + 9 * i).toString()).val()) :
+                $('#' + (j + 9 * i).toString()).val()));
+    }
+    checkModal(_res) {
+        $('#msgCheck').text(_res);
+        $('#checkModal').modal();
     }
 
 }

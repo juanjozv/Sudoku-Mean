@@ -3,7 +3,7 @@
         <i class="fa fa-bell fa-fw"></i> Sudoku Options
     </div>
     <div class="panel-body ">
-        
+
         <button (click)="generateNewSudoku()" type="button" class="btn btn-primary btn-block">
                 <span class="glyphicon glyphicon-play"></span>&nbsp;New Sudoku</button>
         <button (click)="reload()" type="button" class="btn btn-primary btn-block">
@@ -16,19 +16,19 @@
     </div>
 </div>
 <div id="checkModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span data-target="#loginModal" data-toggle="modal" id="close">&times;</span>
-                <h2>Sudoku Checked!</h2>
+    <div class="modal-content">
+        <div class="modal-header">
+            <span data-target="#loginModal" data-toggle="modal" id="close">&times;</span>
+            <h2>Sudoku Checked!</h2>
+        </div>
+        <div class="modal-body" ALIGN="center">
+            <br><br>
+            <p id="msgCheck" style="font-family: 'Bemis'; font-size: 30px; color:black"></p>
+            <br><br>
+            <div class="btn-group btn-group-lg">
+                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
             </div>
-            <div class="modal-body" ALIGN="center">
-                <br><br>
-                <p id="msgCheck" style="font-family: 'Bemis'; font-size: 20px; color:black"></p>
-                <br><br>
-                <div class="btn-group btn-group-lg">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" >OK</button>
-                </div>
-                <br><br>
-            </div>
+            <br><br>
         </div>
     </div>
+</div>
