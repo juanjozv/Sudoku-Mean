@@ -143,3 +143,13 @@ a:hover {
 .modal-body {
     padding: 2px 16px;
 }
+
+@media (min-width: 768px) {
+    .navbar-nav.navbar-center {
+        position: absolute;
+        left: 50%;
+        transform: translatex(-50%);
+        font-size: 230%;
+        color: #FFA500 !important;
+    }
+}

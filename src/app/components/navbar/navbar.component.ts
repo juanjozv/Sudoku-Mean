@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as NavbarView from './navbarView';
+import $ from 'jquery';
 
 
 @Component({
@@ -15,6 +16,8 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  
+  saveUsername() {
+    this._navbarView.setUsername();
+  }
 
 }

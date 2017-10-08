@@ -16,26 +16,5 @@
     <app-root></app-root>
 </body>
 <script type="text/javascript" src="./assets/javascripts/main.js"></script>
-<script>
-    //Methods for the Timer
-    let minutesLabel = $('#minutes');
-    let secondsLabel = $('#seconds');
-    let totalSeconds = 0;
-
-
-    let setTime = () => {
-        ++totalSeconds;
-        secondsLabel.html(pad(totalSeconds % 60));
-        minutesLabel.html(pad(parseInt(totalSeconds / 60)));
-    }
-
-    let pad = (val) => {
-        let valString = val + "";
-        if (valString.length < 2) return "0" + valString;
-        return valString;
-    }
-
-    setInterval(setTime, 1000);
-</script>
 
 </html>

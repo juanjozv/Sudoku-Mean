@@ -3,8 +3,13 @@
         <div class="navbar-header">
             <a class="navbar-brand">PROGRAMMING PARADIGMS</a>
         </div>
+        <ul class="nav navbar-nav navbar-center">
+            <li>
+                <a id="showUsername"></a>
+            </li>
+        </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a data-target="#loginModal" data-toggle="modal" id="login"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+            <li><a data-target="#loginModal" data-toggle="modal" id="login"><span class="glyphicon glyphicon-user"></span> LOGIN</a></li>
         </ul>
     </div>
 </nav>
@@ -25,7 +30,7 @@
             </div>
             <br>
             <div class="btn-group btn-group-lg">
-                <button type="submit" class="btn btn-primary" id="btnLogin">LOGIN</button>
+                <button (click)="saveUsername()" type="button" class="btn btn-primary" id="btnLogin" data-target="#loginModal" data-toggle="modal">LOGIN</button>
             </div>
             <br><br>
         </div>
