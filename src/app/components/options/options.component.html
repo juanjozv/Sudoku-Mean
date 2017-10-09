@@ -1,6 +1,50 @@
-<h4 style="background-color: #337ab7; color: #fff; border-radius: 4px; height: 5%; line-height: 40px; text-align: center">Options</h4>
-<ul class="nav nav-pills nav-stacked" style="border-color:black;">
-    <li><a href="#section1">Load</a></li>
-    <li><a href="#section2">Save</a></li>
+<div class="panel panel-primary">
+    <div class="panel-heading" ALIGN="center">
+        <i class="fa fa-bell fa-fw"></i> User Options
+    </div>
+    <div class="panel-body ">
+        <button type="button" class="btn btn-primary btn-block" data-target="#loadModal" data-toggle="modal">Load Game</button>
+        <button type="button" class="btn btn-primary btn-block" data-target="#saveModal" data-toggle="modal">Save Game</button>
+    </div>
+</div>
 
-</ul>
+<div id="loadModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span data-target="#loadModal" data-toggle="modal" id="close">&times;</span>
+            <h2>Choose your game</h2>
+        </div>
+        <div class="modal-body" ALIGN="center">
+            <br><br>
+            <table class="table">
+                <thead>
+                    <tr style>
+                        <th style="width: 269px;"></th>
+                        <th style="width: 269px;">Games</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="userGames">
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+
+<div id="saveModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span data-target="#saveModal" data-toggle="modal" id="close">&times;</span>
+            <h2>Game Saved!</h2>
+        </div>
+        <div class="modal-body" ALIGN="center">
+            <br><br>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-/*import $ from 'jquery';
-import Timer from 'easytimer';*/
+import * as SudokuView from '../sudoku/sudokuView';
+/*import $ from 'jquery';*/
 
 
 @Component({
@@ -9,15 +9,8 @@ import Timer from 'easytimer';*/
   styleUrls: ['./options.component.css']
 })
 export class OptionsComponent implements OnInit {
-  t: any
   constructor() { }
 
-  ngOnInit() {
-   /* this.t = new Timer();
-    this.t.start();
-    this.t.addEventListener('secondsUpdated', function (e) {
-      $('#timer').html(this.t.getTimeValues().toString());
-    });*/
-  }
+  ngOnInit() { }
   
 }
