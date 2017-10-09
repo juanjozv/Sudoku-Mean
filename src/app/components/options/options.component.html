@@ -1,10 +1,12 @@
 <div class="panel panel-primary">
     <div class="panel-heading" ALIGN="center">
-        <i class="fa fa-bell fa-fw"></i> User Options
+        <i class="	glyphicon glyphicon-user"></i> User Options
     </div>
     <div class="panel-body ">
-        <button type="button" (click)="loadSudokus()" class="btn btn-primary btn-block">Load Game</button>
-        <button type="button" class="btn btn-primary btn-block" data-target="#saveModal" data-toggle="modal">Save Game</button>
+        <button type="button" (click)="loadSudokus()" class="btn btn-primary btn-block" data-target="#loadModal" data-toggle="modal">
+                <span class="glyphicon glyphicon-open"></span> Load Game</button>
+        <button type="button" (click)="loadSudokus()" class="btn btn-primary btn-block" data-target="#saveModal" data-toggle="modal">
+            <span class="glyphicon glyphicon-save"></span> Save Game</button>
     </div>
 </div>
 
@@ -15,7 +17,8 @@
             <h2>Choose your game</h2>
         </div>
         <div class="modal-body" ALIGN="center">
-            <br><br>
+            <br>
+            <br>
             <table class="table">
                 <thead>
                     <tr style>
@@ -41,7 +44,8 @@
             <h2>Game Saved!</h2>
         </div>
         <div class="modal-body" ALIGN="center">
-            <br><br>
+            <br>
+            <br>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
