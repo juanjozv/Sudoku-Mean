@@ -7,7 +7,7 @@ const random = new Random();
 function* initialSudokuNumberGenerator(start = 0, next = x => x + 3, stop = x => x == 9, possibleValues) {
     // se genera un random de 0 a possibleValues.length de modo que se elija una posicion cualquiera
     //del array y así elegir un número desocupado un numero desocupado
-    let pos = random.getRandomInt(0, possibleValues.length),
+    let pos = random.rand(0, possibleValues.length),
         number = possibleValues[pos],
         row = 0,
         column = 0,
@@ -33,7 +33,7 @@ function* sudokuGenerator(start = 0, next = x => x + 1, stoprow = i => i == 8, s
     let row, col, pos, number, lastNumberCoordinates, cell, possibleValues = Array.from({ length: 9 }, (v, i) => i + 1);
     yield* initialSudokuNumberGenerator(0, x => x + 3, x => x == 9, possibleValues); // se hace yield del primer paso del patron
     for (let i = start; !stoprow(i);) { // i < 8 debido a que ya se ingresó un número de los 9 posibles en la matriz
-        pos = random.getRandomInt(0, possibleValues.length), // lo mismo que el anterior, se elije una posicion random y su respectivo numero
+        pos = random.rand(0, possibleValues.length), // lo mismo que el anterior, se elije una posicion random y su respectivo numero
         number = possibleValues[pos],
         lastNumberCoordinates = coordinates.pop(), // se le hace pop a el array de cordenadas para así tener todas las coordenadas del numero ingresado anteriormente
 

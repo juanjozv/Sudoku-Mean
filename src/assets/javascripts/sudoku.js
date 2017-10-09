@@ -33,13 +33,16 @@ class Sudoku {
         this.sections[Math.floor(i / 3)][Math.floor(j / 3)].pop();
     }
     hasLegalValues(array) {
-        return (new Set(array)).size === array.length;
+        return (new Set(array)).size === array.length; // se verifica si hay numeros repetidos en un array cualquiera
     }
     isValueRepeated(position){
+        // se verifica si hay un valor repetido en la fila, columna o cuadrícula en la posicion "position"
         return (!this.hasLegalValues(this.rows[position]) || !this.hasLegalValues(this.columns[position]) 
                 || !this.hasLegalValues(this.sections[Math.floor(position / 3)][position % 3]))
     }
     isSudoku() {
+        //Se recorren todas las filas, columnas y cuadriculas del sudoku para verificar si algun valor se repite,
+        //si se repite no es un sudoku
         for(let i of this){
            if(this.isValueRepeated(i)) return false;
         }
