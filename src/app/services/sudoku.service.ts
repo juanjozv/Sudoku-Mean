@@ -29,7 +29,7 @@ export class SudokuService {
     .map((response: Response) => response.json());
   }
   loadSudoku(id){
-    let _url = './api/sudoku/'+ JSON.stringify(id) ;
+    let _url = './api/sudoku/'+ id ;
     return this._http.get(_url)
     .map((response: Response) => response.json());
   }

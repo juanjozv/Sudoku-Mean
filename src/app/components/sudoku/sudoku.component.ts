@@ -26,6 +26,7 @@ export class SudokuComponent implements OnInit {
   }
 
   paintSudokuView(res_) {
+    console.log(res_)
     res_.playableSudoku.forEach(elem => {
       this._matrix[elem.x][elem.y] = elem.value;
     });

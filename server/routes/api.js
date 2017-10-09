@@ -163,7 +163,7 @@ router.route('/sudoku/:id')
                 (err, sudoku) => {
                     if (err)
                         res.send(err);
-                    res.json(sudoku);
+                    res.json(sudoku[0]);
                 })
         }
     );
@@ -184,7 +184,7 @@ router.route('/newSudoku')
             //let object = { user: req.body.user, difficulty: req.body.difficulty, lastPlayed: req.body.lastPlayed, playableSudoku: [] };
             let object = { user: 'LEO', difficulty: 'easy', lastPlayed: '09/09/2017', playableSudoku: [] };
             for (let actualValue of sudokuGen) {
-                clue = random.getRandomInt(1, 5);
+                clue = random.rand(1, 5);
                 (clue == 3 || clue == 1) ? playableSudokuValues = { x: actualValue.row, y: actualValue.col, value: actualValue.num, isClue: true }: playableSudokuValues = { x: actualValue.row, y: actualValue.col, value: ' ', isClue: false }
                 object.playableSudoku.push(playableSudokuValues);
             }
