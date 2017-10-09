@@ -11,9 +11,7 @@ import { ElementRef } from '@angular/core';
 export class TimeComponent implements OnInit {
   _myTimer: any = new Timer();
   constructor(private _elementRef: ElementRef) { }
-  ngOnInit() {
-    //this.startTimer();
-  }
+  ngOnInit() {}
 
   startTimer() {
     this._myTimer.startTimer();
@@ -23,5 +21,8 @@ export class TimeComponent implements OnInit {
     this._myTimer.stopTimer();
   }
 
+  showLastTime() {
+    this._myTimer.showLastTimer();
+  }
 
 }
