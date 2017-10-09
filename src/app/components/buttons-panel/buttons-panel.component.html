@@ -3,15 +3,41 @@
         <i class="fa fa-bell fa-fw"></i> Sudoku Options
     </div>
     <div class="panel-body ">
-
-        <button (click)="generateNewSudoku()" type="button" class="btn btn-primary btn-block">
-                <span class="glyphicon glyphicon-play"></span>&nbsp;New Sudoku</button>
-        <button (click)="reload()" type="button" class="btn btn-primary btn-block">
+        <div class="dropup btn btn-block">
+            <button type="button" class="btn btn-primary btn-block" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-play"></span>&nbsp;New Sudoku&nbsp;
+            </button>
+            <ul class="dropdown-menu">
+                <li class="disabled">
+                    <a>Difficulty</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a>Easy</a>
+                </li>
+                <li>
+                    <a>Medium</a>
+                </li>
+                <li>
+                    <a>God</a>
+                </li>
+                <li>
+                    <a (click)="generateNewSudoku()">Random</a>
+                </li>
+            </ul>
+        </div>
+        <div class="btn btn-block">
+            <button (click)="reload()" type="button" class="btn btn-primary btn-block">
                 <span class="glyphicon glyphicon-repeat"></span>&nbsp;Restart</button>
-        <button (click)="checkSudoku()" type="button" class="btn btn-primary btn-block">
+        </div>
+        <div class="btn btn-block">
+            <button (click)="checkSudoku()" type="button" class="btn btn-primary btn-block">
                 <span class="glyphicon glyphicon-check"></span>&nbsp;Check Solution</button>
-        <button (click)="solveSudoku()" type="button" class="btn btn-primary btn-block">
+        </div>
+        <div class="btn btn-block">
+            <button (click)="solveSudoku()" type="button" class="btn btn-primary btn-block">
                 <span class="glyphicon glyphicon-flash"></span>&nbsp;Solve</button>
+        </div>
 
     </div>
 </div>
@@ -22,13 +48,16 @@
             <h2>Sudoku Checked!</h2>
         </div>
         <div class="modal-body" ALIGN="center">
-            <br><br>
+            <br>
+            <br>
             <p id="msgCheck" style="font-family: 'Bemis'; font-size: 30px; color:black"></p>
-            <br><br>
+            <br>
+            <br>
             <div class="btn-group btn-group-lg">
                 <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
             </div>
-            <br><br>
+            <br>
+            <br>
         </div>
     </div>
 </div>
