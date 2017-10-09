@@ -94,15 +94,25 @@ router.route('/sudokus')
 //    REMOVE  (DELETE) -> deletes the sudoku by id (accessed at GET http://localhost:9090/api/sudokus)
 
 
-router.route('/sudokus/:sudoku_id')
+router.route('/sudokus/:user')
     .get(
         (req, res) => {
-            SudokuModel.findById(req.params.sudoku_id,
-                (err, sudoku) => {
-                    if (err)
-                        res.send(err);
-                    res.json(sudoku);
-                });
+            let reqUser = '';
+            reqUser += req.params.user;
+            console.log(reqUser);
+            SudokuModel.find({ 'user': reqUser }, '_id difficulty lastPlayed ',
+                    (err, sudokus) => {
+                        if (err)
+                            res.send(err);
+                        console.log(sudokus);
+                        res.json(sudokus);
+                    })
+                /*SudokuModel.findById(req.params.user,
+                    (err, sudoku) => {
+                        if (err)
+                            res.send(err);
+                        res.json(sudoku);
+                    });*/
         }
     )
     .put(
@@ -143,6 +153,18 @@ router.route('/sudokus/:sudoku_id')
                     res.json({ status: 'ok', message: 'Sudoku successfully deleted!' });
                 }
             );
+        }
+    );
+router.route('/sudoku/:id')
+    .get(
+        (req, res) => {
+            let reqId = req.params.id;
+            SudokuModel.find({ _id: reqId }, 'user difficulty lastPlayed playableSudoku',
+                (err, sudoku) => {
+                    if (err)
+                        res.send(err);
+                    res.json(sudoku);
+                })
         }
     );
 

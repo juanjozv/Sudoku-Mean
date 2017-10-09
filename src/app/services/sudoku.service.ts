@@ -19,8 +19,18 @@ export class SudokuService {
       .map((response: Response) => {return response.json()});
   }
 
-  getSudokuMatrix() {
+  /*getSudokuMatrix() {
     return this._http.get('./api/newSudoku')
       .map((response: Response) => response.json);
+  }*/
+  loadUserSudokus(user){
+    let _url = './api/sudokus/'+user;
+    return this._http.get(_url)
+    .map((response: Response) => response.json());
+  }
+  loadSudoku(id){
+    let _url = './api/sudoku/'+ JSON.stringify(id) ;
+    return this._http.get(_url)
+    .map((response: Response) => response.json());
   }
 }
