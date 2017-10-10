@@ -111,6 +111,8 @@ router.route('/sudokus/:user')
                     });*/
         }
     );
+
+//Load
 router.route('/sudoku/:id')
     .get(
         (req, res) => {
@@ -221,13 +223,14 @@ router.route('/save')
     .post(
         (req, res) => {
             let sudoku_ = new SudokuModel(); // create a new instance of the Sudoku model
-            let reqSudokuGame = JSON.parse(req.data);
-            console.log("Este es el req.data" + reqSudokuGame);
+            console.log("Este es el req.data" + req.body.user);
+            //let reqSudokuGame = JSON.parse(req.body);
 
-            sudoku_.user = reqSudokuGame.user;
-            sudoku_.difficulty = reqSudokuGame.difficulty;
-            sudoku_.lastPlayed = reqSudokuGame.lastPlayed;
-            sudoku_.playableSudoku = reqSudokuGame.lastPlayed;
+
+            sudoku_.user = req.body.user;
+            sudoku_.difficulty = req.body.difficulty;
+            sudoku_.lastPlayed = req.body.lastPlayed;
+            sudoku_.playableSudoku = req.body.playableSudoku;
 
             sudoku_.save(
                 (err) => {

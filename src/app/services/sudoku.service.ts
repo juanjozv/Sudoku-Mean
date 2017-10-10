@@ -51,7 +51,7 @@ export class SudokuService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this._http.post(_url, {"user": saveObject.user}, options)
+    return this._http.post(_url, JSON.stringify(saveObject), options)
     .map((response: Response) => response.json());
   }
 }

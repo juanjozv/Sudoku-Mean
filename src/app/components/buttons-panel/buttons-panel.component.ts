@@ -60,6 +60,19 @@ export class ButtonsPanelComponent implements OnInit {
     this._sudokuComponent.paintSudokuView(res);
   }
 
+  // Load Saved Games
+  repaintLoadMatrix(res) {
+    res.playableSudoku.forEach((e) => {
+      if (e.value == 0) e.value = ' ';
+    });
+    this._sudokuComponent.paintSudokuView(res);
+  }
+
+  loadSavedGameInMatrix(id) {
+    this._sudokuService.loadSudoku(id).subscribe(res => { this.repaintLoadMatrix(res); });
+  }
+
+
   showSudokus(sudokusList) {
     let row;
     $('#userGames').html('');
@@ -72,7 +85,7 @@ export class ButtonsPanelComponent implements OnInit {
   }
   onclickEvent(sudo) {
     $('#' + sudo._id).click(() => {
-      this.loadSudokuInMatrix(sudo._id);
+      this.loadSavedGameInMatrix(sudo._id);
       this._timeComponent.stopTimer();
       this._timeComponent.startTimer();
     })
@@ -87,7 +100,7 @@ export class ButtonsPanelComponent implements OnInit {
 
     let saveObject = {user: gameUser, difficulty: gameDifficulty, lastPlayed: gameDate, playableSudoku: matrixAux}
     if (gameUser != "empty") {
-      this._sudokuService.saveSudoku(saveObject);
+      this._sudokuService.saveSudoku(saveObject).subscribe(res => {  });
     }
   }
 }
