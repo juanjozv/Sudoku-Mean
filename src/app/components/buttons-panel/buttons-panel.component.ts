@@ -39,6 +39,10 @@ export class ButtonsPanelComponent implements OnInit {
   }
 
   //------------------------------- User Options ----------
+  loadByLevelSudoku(d){
+    this._sudokuService.loadByLevelSudoku(d).subscribe(res => { this.repaintMatrix(res)});
+  }
+
   loadSudokus() {
     let user = this._userOptionsView.getUser();
     if (user != "empty") {

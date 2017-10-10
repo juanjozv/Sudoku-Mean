@@ -5,6 +5,12 @@ import 'rxjs/add/operator/map';
 export class SudokuService {
   constructor(private _http: Http) { }
   
+  loadByLevelSudoku(d){
+    let _url ='./api/newSudokuDifficulty/' + d;
+    return this._http.get(_url)
+    .map((response: Response) => response.json());
+  }
+
   getNewSudoku(username: string, difficulty: string, lastPlayed: string) {
     return this._http.get('./api/newSudoku').map((response: Response) => { return response.json() });
   }

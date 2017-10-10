@@ -193,7 +193,20 @@ router.route('/newSudoku')
             res.json(object);
         }
     );
-
+router.route('/newSudokuDifficulty/:difficulty')
+    .get(
+        (req, res) => {
+            let reqDifficulty = '';
+            reqDifficulty += req.params.difficulty;
+            SudokuModel.find({ 'difficulty': reqDifficulty }, '_id user difficulty lastPlayed playableSudoku',
+                (err, sudokus) => {
+                    if (err)
+                        res.send(err);
+                    let pos = random.rand(0, (sudokus.length));
+                    res.json(sudokus[pos]);
+                })
+        }
+    );
 router.route('/solveSudoku/:matrix')
     .get(
         (req, res) => {
