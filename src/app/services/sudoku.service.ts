@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgModule } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
 import 'rxjs/add/operator/map';
 @Injectable()
 export class SudokuService {
@@ -13,10 +14,11 @@ export class SudokuService {
     return this._http.get(_url)
       .map((response: Response) => {return response.json()});
   }
-  solveSudoku(matrix) {
+  solveSudoku(matrix){
     let _url = './api/solveSudoku/'+ JSON.stringify(matrix) ;
     return this._http.get(_url)
-      .map((response: Response) => {return response.json()});
+      .map((response: Response) => {return response.json()})
+    
   }
 
   /*getSudokuMatrix() {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as SudokuView from './sudokuView';
 import { SudokuService } from '../../services/sudoku.service';
-import $ from 'jquery';
+
 
 @Component({
   selector: 'app-sudoku',
@@ -22,11 +22,16 @@ export class SudokuComponent implements OnInit {
   }
 
   createNewSudoku() {
-    this._sudokuService.getNewSudoku('leo', 'normal', 'hoy').subscribe(res => { this.paintSudokuView(res); });
+    this._sudokuService.getNewSudoku('leo', 'normal', 'hoy').subscribe(
+      res =>  this.paintSudokuView(res),
+      err =>  this.createNewSudokuClient(),
+      () => console.log('kha')
+      
+    );
   }
 
   paintSudokuView(res_) {
-    console.log(res_)
+   // console.log(res_)
     res_.playableSudoku.forEach(elem => {
       this._matrix[elem.x][elem.y] = elem.value;
     });
@@ -36,11 +41,19 @@ export class SudokuComponent implements OnInit {
   checkSudoku() {
 
     let matrixAux = this._sudokuView.getMatrix();
-    this._sudokuService.checkSudoku(matrixAux).subscribe(res => { this.result(res)});
+    this._sudokuService.checkSudoku(matrixAux).subscribe(
+      res =>  this.result(res), 
+      err => this.checkSudokuClient(),
+      () => console.log('kha')
+    );
   }
 
   solveSudoku() {
-    this._sudokuService.solveSudoku(this._matrix).subscribe(res => { this._sudokuView.paint(res); });
+    this._sudokuService.solveSudoku(this._matrix).subscribe(
+      res =>  this._sudokuView.paint(res),
+      err => this.solveSudokuClient(),
+      () => console.log('kha') 
+    );
   }
 
   result(_res) {
@@ -50,4 +63,15 @@ export class SudokuComponent implements OnInit {
   reload() {
     this._sudokuView.paint(this._matrix);
   }
+  // Client algorithms
+  checkSudokuClient(){
+    this._sudokuView.checkModal(this._sudokuView.checkSudoku());
+  }
+  createNewSudokuClient(){
+    this._sudokuView.generateSudoku();
+  }
+  solveSudokuClient(){
+   this._sudokuView.solveSudoku();
+  }
+
 }
