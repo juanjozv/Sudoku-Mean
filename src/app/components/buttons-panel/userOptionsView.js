@@ -11,7 +11,10 @@ class UserOptionsView {
     showModal() {
         $('#loadModal').modal();
     }
-
+    storage(d) {
+        window.sessionStorage.setItem('difficulty', d);
+        //let data = window.sessionStorage.getItem('difficulty');
+    }
     createRow(sudoku) {
         let icon = '<td><span class="glyphicon glyphicon-user"></span></td>',
             difficulty = '<td>' + sudoku.difficulty + '</td>',
