@@ -1,5 +1,5 @@
 db.sudokus.insert({
-    "user": "Juanjo",
+    "user": "default",
     "difficulty": "easy",
     "lastPlayed": "2017-09-14",
     "playableSudoku": [
@@ -97,7 +97,7 @@ db.sudokus.insert({
 })
 
 db.sudokus.insert({
-    "user": "Manfred",
+    "user": "default",
     "difficulty": "normal",
     "lastPlayed": "2017-09-14",
     "playableSudoku": [
@@ -195,7 +195,7 @@ db.sudokus.insert({
 
 
 db.sudokus.insert({
-    "user": "Leonel",
+    "user": "default",
     "difficulty": "hard",
     "lastPlayed": "2017-09-14",
     "playableSudoku": [
@@ -290,3 +290,301 @@ db.sudokus.insert({
         { "x": 8, "y": 8, "value": 5, "isClue": false }
     ]
 })
+
+
+db.sudokus.insert({
+    "user": "default",
+    "difficulty": "easy",
+    "lastPlayed": "2017-09-14",
+    "playableSudoku": [
+        { "x": 0, "y": 0, "value": 1, "isClue": false },
+        { "x": 0, "y": 1, "value": 2, "isClue": false },
+        { "x": 0, "y": 2, "value": 7, "isClue": false },
+        { "x": 0, "y": 3, "value": 5, "isClue": false },
+        { "x": 0, "y": 4, "value": 4, "isClue": true },
+        { "x": 0, "y": 5, "value": 8, "isClue": true },
+        { "x": 0, "y": 6, "value": 9, "isClue": false },
+        { "x": 0, "y": 7, "value": 6, "isClue": true },
+        { "x": 0, "y": 8, "value": 3, "isClue": true },
+
+        { "x": 1, "y": 0, "value": 6, "isClue": true },
+        { "x": 1, "y": 1, "value": 3, "isClue": false },
+        { "x": 1, "y": 2, "value": 5, "isClue": true },
+        { "x": 1, "y": 3, "value": 7, "isClue": false },
+        { "x": 1, "y": 4, "value": 2, "isClue": false },
+        { "x": 1, "y": 5, "value": 9, "isClue": false },
+        { "x": 1, "y": 6, "value": 8, "isClue": false },
+        { "x": 1, "y": 7, "value": 1, "isClue": false },
+        { "x": 1, "y": 8, "value": 4, "isClue": true },
+
+        { "x": 2, "y": 0, "value": 8, "isClue": true },
+        { "x": 2, "y": 1, "value": 4, "isClue": false },
+        { "x": 2, "y": 2, "value": 9, "isClue": true },
+        { "x": 2, "y": 3, "value": 1, "isClue": false },
+        { "x": 2, "y": 4, "value": 6, "isClue": false },
+        { "x": 2, "y": 5, "value": 3, "isClue": true },
+        { "x": 2, "y": 6, "value": 7, "isClue": true },
+        { "x": 2, "y": 7, "value": 5, "isClue": false },
+        { "x": 2, "y": 8, "value": 2, "isClue": false },
+
+        { "x": 3, "y": 0, "value": 9, "isClue": true },
+        { "x": 3, "y": 1, "value": 5, "isClue": false },
+        { "x": 3, "y": 2, "value": 1, "isClue": true },
+        { "x": 3, "y": 3, "value": 6, "isClue": true },
+        { "x": 3, "y": 4, "value": 8, "isClue": false },
+        { "x": 3, "y": 5, "value": 4, "isClue": false },
+        { "x": 3, "y": 6, "value": 2, "isClue": true },
+        { "x": 3, "y": 7, "value": 3, "isClue": false },
+        { "x": 3, "y": 8, "value": 7, "isClue": false },
+
+        { "x": 4, "y": 0, "value": 3, "isClue": true },
+        { "x": 4, "y": 1, "value": 6, "isClue": false },
+        { "x": 4, "y": 2, "value": 4, "isClue": true },
+        { "x": 4, "y": 3, "value": 2, "isClue": false },
+        { "x": 4, "y": 4, "value": 5, "isClue": true },
+        { "x": 4, "y": 5, "value": 7, "isClue": false },
+        { "x": 4, "y": 6, "value": 1, "isClue": false },
+        { "x": 4, "y": 7, "value": 9, "isClue": false },
+        { "x": 4, "y": 8, "value": 8, "isClue": false },
+
+        { "x": 5, "y": 0, "value": 2, "isClue": false },
+        { "x": 5, "y": 1, "value": 7, "isClue": true },
+        { "x": 5, "y": 2, "value": 8, "isClue": false },
+        { "x": 5, "y": 3, "value": 3, "isClue": false },
+        { "x": 5, "y": 4, "value": 9, "isClue": true },
+        { "x": 5, "y": 5, "value": 1, "isClue": true },
+        { "x": 5, "y": 6, "value": 5, "isClue": true },
+        { "x": 5, "y": 7, "value": 4, "isClue": false },
+        { "x": 5, "y": 8, "value": 6, "isClue": false },
+
+        { "x": 6, "y": 0, "value": 7, "isClue": false },
+        { "x": 6, "y": 1, "value": 9, "isClue": true },
+        { "x": 6, "y": 2, "value": 2, "isClue": true },
+        { "x": 6, "y": 3, "value": 4, "isClue": false },
+        { "x": 6, "y": 4, "value": 3, "isClue": false },
+        { "x": 6, "y": 5, "value": 5, "isClue": false },
+        { "x": 6, "y": 6, "value": 6, "isClue": false },
+        { "x": 6, "y": 7, "value": 8, "isClue": true },
+        { "x": 6, "y": 8, "value": 1, "isClue": false },
+
+        { "x": 7, "y": 0, "value": 5, "isClue": false },
+        { "x": 7, "y": 1, "value": 1, "isClue": true },
+        { "x": 7, "y": 2, "value": 3, "isClue": false },
+        { "x": 7, "y": 3, "value": 8, "isClue": false },
+        { "x": 7, "y": 4, "value": 7, "isClue": false },
+        { "x": 7, "y": 5, "value": 6, "isClue": false },
+        { "x": 7, "y": 6, "value": 4, "isClue": true },
+        { "x": 7, "y": 7, "value": 2, "isClue": false },
+        { "x": 7, "y": 8, "value": 9, "isClue": false },
+
+        { "x": 8, "y": 0, "value": 4, "isClue": false },
+        { "x": 8, "y": 1, "value": 8, "isClue": true },
+        { "x": 8, "y": 2, "value": 6, "isClue": true },
+        { "x": 8, "y": 3, "value": 9, "isClue": true },
+        { "x": 8, "y": 4, "value": 1, "isClue": true },
+        { "x": 8, "y": 5, "value": 2, "isClue": false },
+        { "x": 8, "y": 6, "value": 3, "isClue": false },
+        { "x": 8, "y": 7, "value": 7, "isClue": true },
+        { "x": 8, "y": 8, "value": 5, "isClue": true }
+    ]
+})
+
+
+
+db.sudokus.insert({
+    "user": "default",
+    "difficulty": "normal",
+    "lastPlayed": "2017-09-14",
+    "playableSudoku": [
+        { "x": 0, "y": 0, "value": 1, "isClue": false },
+        { "x": 0, "y": 1, "value": 8, "isClue": true },
+        { "x": 0, "y": 2, "value": 6, "isClue": false },
+        { "x": 0, "y": 3, "value": 2, "isClue": true },
+        { "x": 0, "y": 4, "value": 3, "isClue": false },
+        { "x": 0, "y": 5, "value": 5, "isClue": true },
+        { "x": 0, "y": 6, "value": 4, "isClue": false },
+        { "x": 0, "y": 7, "value": 9, "isClue": true },
+        { "x": 0, "y": 8, "value": 7, "isClue": false },
+
+        { "x": 1, "y": 0, "value": 4, "isClue": false },
+        { "x": 1, "y": 1, "value": 7, "isClue": false },
+        { "x": 1, "y": 2, "value": 9, "isClue": false },
+        { "x": 1, "y": 3, "value": 8, "isClue": true },
+        { "x": 1, "y": 4, "value": 1, "isClue": false },
+        { "x": 1, "y": 5, "value": 6, "isClue": false },
+        { "x": 1, "y": 6, "value": 5, "isClue": false },
+        { "x": 1, "y": 7, "value": 3, "isClue": false },
+        { "x": 1, "y": 8, "value": 2, "isClue": false },
+
+        { "x": 2, "y": 0, "value": 5, "isClue": false },
+        { "x": 2, "y": 1, "value": 3, "isClue": false },
+        { "x": 2, "y": 2, "value": 2, "isClue": true },
+        { "x": 2, "y": 3, "value": 7, "isClue": true },
+        { "x": 2, "y": 4, "value": 9, "isClue": true },
+        { "x": 2, "y": 5, "value": 4, "isClue": false },
+        { "x": 2, "y": 6, "value": 8, "isClue": true },
+        { "x": 2, "y": 7, "value": 1, "isClue": false },
+        { "x": 2, "y": 8, "value": 6, "isClue": false },
+
+        { "x": 3, "y": 0, "value": 9, "isClue": false },
+        { "x": 3, "y": 1, "value": 4, "isClue": false },
+        { "x": 3, "y": 2, "value": 1, "isClue": false },
+        { "x": 3, "y": 3, "value": 6, "isClue": false },
+        { "x": 3, "y": 4, "value": 2, "isClue": false },
+        { "x": 3, "y": 5, "value": 8, "isClue": false },
+        { "x": 3, "y": 6, "value": 3, "isClue": true },
+        { "x": 3, "y": 7, "value": 7, "isClue": false },
+        { "x": 3, "y": 8, "value": 5, "isClue": false },
+
+        { "x": 4, "y": 0, "value": 2, "isClue": false },
+        { "x": 4, "y": 1, "value": 5, "isClue": false },
+        { "x": 4, "y": 2, "value": 8, "isClue": false },
+        { "x": 4, "y": 3, "value": 9, "isClue": true },
+        { "x": 4, "y": 4, "value": 7, "isClue": false },
+        { "x": 4, "y": 5, "value": 3, "isClue": false },
+        { "x": 4, "y": 6, "value": 1, "isClue": false },
+        { "x": 4, "y": 7, "value": 6, "isClue": true },
+        { "x": 4, "y": 8, "value": 4, "isClue": true },
+
+        { "x": 5, "y": 0, "value": 3, "isClue": true },
+        { "x": 5, "y": 1, "value": 6, "isClue": true },
+        { "x": 5, "y": 2, "value": 7, "isClue": false },
+        { "x": 5, "y": 3, "value": 4, "isClue": false },
+        { "x": 5, "y": 4, "value": 5, "isClue": false },
+        { "x": 5, "y": 5, "value": 1, "isClue": false },
+        { "x": 5, "y": 6, "value": 9, "isClue": true },
+        { "x": 5, "y": 7, "value": 2, "isClue": false },
+        { "x": 5, "y": 8, "value": 8, "isClue": true },
+
+        { "x": 6, "y": 0, "value": 7, "isClue": true },
+        { "x": 6, "y": 1, "value": 2, "isClue": false },
+        { "x": 6, "y": 2, "value": 5, "isClue": false },
+        { "x": 6, "y": 3, "value": 1, "isClue": true },
+        { "x": 6, "y": 4, "value": 4, "isClue": true },
+        { "x": 6, "y": 5, "value": 9, "isClue": false },
+        { "x": 6, "y": 6, "value": 6, "isClue": true },
+        { "x": 6, "y": 7, "value": 8, "isClue": false },
+        { "x": 6, "y": 8, "value": 3, "isClue": true },
+
+        { "x": 7, "y": 0, "value": 6, "isClue": true },
+        { "x": 7, "y": 1, "value": 1, "isClue": false },
+        { "x": 7, "y": 2, "value": 3, "isClue": false },
+        { "x": 7, "y": 3, "value": 5, "isClue": false },
+        { "x": 7, "y": 4, "value": 8, "isClue": true },
+        { "x": 7, "y": 5, "value": 7, "isClue": true },
+        { "x": 7, "y": 6, "value": 2, "isClue": false },
+        { "x": 7, "y": 7, "value": 4, "isClue": false },
+        { "x": 7, "y": 8, "value": 9, "isClue": false },
+
+        { "x": 8, "y": 0, "value": 8, "isClue": true },
+        { "x": 8, "y": 1, "value": 9, "isClue": true },
+        { "x": 8, "y": 2, "value": 4, "isClue": false },
+        { "x": 8, "y": 3, "value": 3, "isClue": true },
+        { "x": 8, "y": 4, "value": 6, "isClue": false },
+        { "x": 8, "y": 5, "value": 2, "isClue": true },
+        { "x": 8, "y": 6, "value": 7, "isClue": true },
+        { "x": 8, "y": 7, "value": 5, "isClue": false },
+        { "x": 8, "y": 8, "value": 1, "isClue": true }
+    ]
+})
+
+db.sudokus.insert({
+    "user": "default",
+    "difficulty": "hard",
+    "lastPlayed": "2017-09-14",
+    "playableSudoku": [
+        { "x": 0, "y": 0, "value": 9, "isClue": false },
+        { "x": 0, "y": 1, "value": 8, "isClue": true },
+        { "x": 0, "y": 2, "value": 3, "isClue": false },
+        { "x": 0, "y": 3, "value": 7, "isClue": false },
+        { "x": 0, "y": 4, "value": 2, "isClue": false },
+        { "x": 0, "y": 5, "value": 4, "isClue": false },
+        { "x": 0, "y": 6, "value": 6, "isClue": false },
+        { "x": 0, "y": 7, "value": 1, "isClue": false },
+        { "x": 0, "y": 8, "value": 5, "isClue": false },
+
+        { "x": 1, "y": 0, "value": 7, "isClue": false },
+        { "x": 1, "y": 1, "value": 4, "isClue": false },
+        { "x": 1, "y": 2, "value": 6, "isClue": false },
+        { "x": 1, "y": 3, "value": 9, "isClue": true },
+        { "x": 1, "y": 4, "value": 5, "isClue": false },
+        { "x": 1, "y": 5, "value": 1, "isClue": false },
+        { "x": 1, "y": 6, "value": 3, "isClue": true },
+        { "x": 1, "y": 7, "value": 8, "isClue": true },
+        { "x": 1, "y": 8, "value": 2, "isClue": true },
+
+        { "x": 2, "y": 0, "value": 2, "isClue": true },
+        { "x": 2, "y": 1, "value": 1, "isClue": true },
+        { "x": 2, "y": 2, "value": 5, "isClue": true },
+        { "x": 2, "y": 3, "value": 6, "isClue": true },
+        { "x": 2, "y": 4, "value": 8, "isClue": false },
+        { "x": 2, "y": 5, "value": 3, "isClue": false },
+        { "x": 2, "y": 6, "value": 9, "isClue": true },
+        { "x": 2, "y": 7, "value": 4, "isClue": false },
+        { "x": 2, "y": 8, "value": 7, "isClue": false },
+
+        { "x": 3, "y": 0, "value": 8, "isClue": true },
+        { "x": 3, "y": 1, "value": 5, "isClue": true },
+        { "x": 3, "y": 2, "value": 7, "isClue": false },
+        { "x": 3, "y": 3, "value": 3, "isClue": false },
+        { "x": 3, "y": 4, "value": 9, "isClue": true },
+        { "x": 3, "y": 5, "value": 2, "isClue": false },
+        { "x": 3, "y": 6, "value": 1, "isClue": true },
+        { "x": 3, "y": 7, "value": 6, "isClue": false },
+        { "x": 3, "y": 8, "value": 4, "isClue": false },
+
+        { "x": 4, "y": 0, "value": 1, "isClue": false },
+        { "x": 4, "y": 1, "value": 3, "isClue": false },
+        { "x": 4, "y": 2, "value": 9, "isClue": true },
+        { "x": 4, "y": 3, "value": 4, "isClue": false },
+        { "x": 4, "y": 4, "value": 7, "isClue": false },
+        { "x": 4, "y": 5, "value": 6, "isClue": false },
+        { "x": 4, "y": 6, "value": 2, "isClue": false },
+        { "x": 4, "y": 7, "value": 5, "isClue": false },
+        { "x": 4, "y": 8, "value": 8, "isClue": true },
+
+        { "x": 5, "y": 0, "value": 6, "isClue": true },
+        { "x": 5, "y": 1, "value": 2, "isClue": false },
+        { "x": 5, "y": 2, "value": 4, "isClue": false },
+        { "x": 5, "y": 3, "value": 5, "isClue": true },
+        { "x": 5, "y": 4, "value": 1, "isClue": true },
+        { "x": 5, "y": 5, "value": 8, "isClue": true },
+        { "x": 5, "y": 6, "value": 7, "isClue": false },
+        { "x": 5, "y": 7, "value": 3, "isClue": false },
+        { "x": 5, "y": 8, "value": 9, "isClue": false },
+
+        { "x": 6, "y": 0, "value": 3, "isClue": false },
+        { "x": 6, "y": 1, "value": 7, "isClue": false },
+        { "x": 6, "y": 2, "value": 2, "isClue": true },
+        { "x": 6, "y": 3, "value": 1, "isClue": false },
+        { "x": 6, "y": 4, "value": 4, "isClue": true },
+        { "x": 6, "y": 5, "value": 5, "isClue": false },
+        { "x": 6, "y": 6, "value": 8, "isClue": false },
+        { "x": 6, "y": 7, "value": 9, "isClue": false },
+        { "x": 6, "y": 8, "value": 6, "isClue": true },
+
+        { "x": 7, "y": 0, "value": 5, "isClue": true },
+        { "x": 7, "y": 1, "value": 9, "isClue": true },
+        { "x": 7, "y": 2, "value": 1, "isClue": true },
+        { "x": 7, "y": 3, "value": 8, "isClue": false },
+        { "x": 7, "y": 4, "value": 6, "isClue": false },
+        { "x": 7, "y": 5, "value": 7, "isClue": true },
+        { "x": 7, "y": 6, "value": 4, "isClue": false },
+        { "x": 7, "y": 7, "value": 2, "isClue": false },
+        { "x": 7, "y": 8, "value": 3, "isClue": true },
+
+        { "x": 8, "y": 0, "value": 4, "isClue": false },
+        { "x": 8, "y": 1, "value": 6, "isClue": false },
+        { "x": 8, "y": 2, "value": 8, "isClue": false },
+        { "x": 8, "y": 3, "value": 2, "isClue": false },
+        { "x": 8, "y": 4, "value": 3, "isClue": false },
+        { "x": 8, "y": 5, "value": 9, "isClue": false },
+        { "x": 8, "y": 6, "value": 5, "isClue": true },
+        { "x": 8, "y": 7, "value": 7, "isClue": false },
+        { "x": 8, "y": 8, "value": 1, "isClue": true }
+    ]
+})
+
+
+
+
