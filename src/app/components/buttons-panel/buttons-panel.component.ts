@@ -38,7 +38,7 @@ export class ButtonsPanelComponent implements OnInit {
     this._timeComponent.showLastTime();
   }
 
-  //-------------------------------
+  //------------------------------- User Options ----------
   loadSudokus() {
     let user = this._userOptionsView.getUser();
     if (user != "empty") {
@@ -46,41 +46,37 @@ export class ButtonsPanelComponent implements OnInit {
     }
   }
   loadSudokuInMatrix(id) {
-    console.log(id);
     this._sudokuService.loadSudoku(id).subscribe(res => { this.repaintMatrix(res); });
   }
   repaintMatrix(res) {
     res.playableSudoku.forEach((e) => {
       if (!e.isClue) e.value = ' ';
     });
-    console.log(res);
     this._sudokuComponent.paintSudokuView(res);
   }
-  createRow(sudoku) {
-    const icon = '<td><span class="glyphicon glyphicon-user"></span></td>',
-      difficulty = '<td>' + sudoku.difficulty + '</td>',
-      lastPlayed = '<td>' + sudoku.lastPlayed + '</td>',
-      button = '<td><button type="button" data-target="#loadModal" data-toggle="modal" class="btn btn-primary badge" id="' + sudoku._id + '"><span class="glyphicon glyphicon-plus"></button></span>',
-      row = '<tr>' + icon + difficulty + lastPlayed + button + '</tr>';
-    return row;
-  }
+
   showSudokus(sudokusList) {
     let row;
     $('#userGames').html('');
-    console.log(sudokusList);
     for (let sudoku of sudokusList) {
-      row = this.createRow(sudoku);
+      row = this._userOptionsView.createRow(sudoku);
       $('#userGames').append(row);
       this.onclickEvent(sudoku);
     }
     this._userOptionsView.showModal();
   }
-  onclickEvent(sudo) { 
-    $('#'+sudo._id).click( ()=> {
+  onclickEvent(sudo) {
+    $('#' + sudo._id).click(() => {
       this.loadSudokuInMatrix(sudo._id);
       this._timeComponent.stopTimer();
       this._timeComponent.startTimer();
     })
-    
+  }
+
+  saveGame(userSudoku) {
+    let user = this._userOptionsView.getUser();
+    if (user != "empty") {
+      this._sudokuService.saveSudoku(userSudoku);
+    }
   }
 }

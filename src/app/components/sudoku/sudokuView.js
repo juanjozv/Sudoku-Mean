@@ -9,13 +9,13 @@ const random = new Random();
 
 let createFill = (td, tr, id) => {
     return $('<input type="int"/>').attr({
-        id: id,
-        class: "hint",
-        maxlength: "1",
-        size: "1",
-        readonly: "",
-        value: ""
-    })
+            id: id,
+            class: "hint",
+            maxlength: "1",
+            size: "1",
+            readonly: "",
+            value: ""
+        })
         .appendTo($('<td />')
             .attr({
                 class: td
@@ -35,8 +35,8 @@ function* sudokuViewGenerator(start = 0, next = x => x + 1, stop = NEVER) {
             $('#sudoku').append(tr);
             tr = $('<tr />');
             row++;
-            (row % 3 == 0) ? tdBorderClass = 'lox' : tdBorderClass = 'lx';
-            (row % 3 == 0) ? tdNormalClass = 'ox' : tdNormalClass = 'nx';
+            (row % 3 == 0) ? tdBorderClass = 'lox': tdBorderClass = 'lx';
+            (row % 3 == 0) ? tdNormalClass = 'ox': tdNormalClass = 'nx';
         }
         column % 3 == 0 ? td = tdBorderClass : td = tdNormalClass;
         input = createFill(td, tr, column);
@@ -48,12 +48,12 @@ function* sudokuViewGenerator(start = 0, next = x => x + 1, stop = NEVER) {
 
 class SudokuView {
     constructor() {
-        [this.start, this.delta, this.stop] = [0, x => x + 1, x => x > 81];
-    }
-    [Symbol.iterator]() {
-        this.iter = sudokuViewGenerator(this.start, this.delta, this.stop);
-        return this;
-    }
+            [this.start, this.delta, this.stop] = [0, x => x + 1, x => x > 81];
+        }
+        [Symbol.iterator]() {
+            this.iter = sudokuViewGenerator(this.start, this.delta, this.stop);
+            return this;
+        }
     next() {
         return this.iter.next();
     }
@@ -71,8 +71,8 @@ class SudokuView {
     getMatrix() {
         return Array.from({ length: 9 }, (row, i) =>
             Array.from({ length: 9 }, (value, j) =>
-                ($('#' + (j + 9 * i).toString()).val() != " ") ? parseInt($('#' + (j + 9 * i).toString()).val())
-                    : $('#' + (j + 9 * i).toString()).val()));
+                ($('#' + (j + 9 * i).toString()).val() != " ") ? parseInt($('#' + (j + 9 * i).toString()).val()) :
+                $('#' + (j + 9 * i).toString()).val()));
     }
     checkModal(_res) {
         $('#msgCheck').text(_res);
