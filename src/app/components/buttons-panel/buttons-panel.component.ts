@@ -73,10 +73,16 @@ export class ButtonsPanelComponent implements OnInit {
     })
   }
 
-  saveGame(userSudoku) {
-    let user = this._userOptionsView.getUser();
-    if (user != "empty") {
-      this._sudokuService.saveSudoku(userSudoku);
+
+  saveGame() {
+    let gameUser = this._userOptionsView.getUser();
+    let gameDifficulty = "normal"; //Obtener la dificultad del juego
+    let gameDate = this._userOptionsView.getCurrentDate();
+    let matrixAux = this._sudokuComponent._sudokuView.getPlayableSudoku();
+
+    let saveObject = {user: gameUser, difficulty: gameDifficulty, lastPlayed: gameDate, playableSudoku: matrixAux}
+    if (gameUser != "empty") {
+      this._sudokuService.saveSudoku(saveObject);
     }
   }
 }

@@ -13,7 +13,7 @@ class UserOptionsView {
     }
 
     createRow(sudoku) {
-        const icon = '<td><span class="glyphicon glyphicon-user"></span></td>',
+        let icon = '<td><span class="glyphicon glyphicon-user"></span></td>',
             difficulty = '<td>' + sudoku.difficulty + '</td>',
             lastPlayed = '<td>' + sudoku.lastPlayed + '</td>',
             button = '<td><button type="button" data-target="#loadModal" data-toggle="modal" class="btn btn-primary badge" id="' + sudoku._id + '"><span class="glyphicon glyphicon-plus"></button></span>',
@@ -21,6 +21,18 @@ class UserOptionsView {
         return row;
     }
 
+    getCurrentDate() {
+        let today = new Date();
+        let dd = today.getDate();
+        let mm = today.getMonth() + 1;
+        let yyyy = today.getFullYear();
+
+        if (dd < 10) dd = '0' + dd;
+        if (mm < 10) mm = '0' + mm;
+
+        today = yyyy + '-' + mm + '-' + dd;
+        return today;
+    }
 }
 
 module.exports = UserOptionsView

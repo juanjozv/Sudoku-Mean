@@ -97,20 +97,21 @@ class SudokuView {
         let sudo = new Sudoku(obj);
         return Solver.hasSolution(sudo) ? 'Sudoku has solution!!' : 'Sudoku has no solution!!';
     }
-    generateSudoku(){
-        let id = "", clue = 0;
+    generateSudoku() {
+        let id = "",
+            clue = 0;
         for (let actualValue of sudokuGen) {
             clue = random.rand(1, 5)
             id = '#' + (actualValue.col + 9 * actualValue.row).toString()
             $(id).val(' ')
                 .prop('disabled', false)
-            if(clue == 3 || clue == 1){
+            if (clue == 3 || clue == 1) {
                 $(id).val(actualValue.num)
                     .prop('disabled', true)
-            } 
+            }
         }
     }
-    solveSudoku(){
+    solveSudoku() {
         let obj = {
             table: this.getMatrix(),
             rows: Array.from({ length: 9 }, v => []),
@@ -129,7 +130,16 @@ class SudokuView {
         let sudo = new Sudoku(obj);
         this.paint(Solver.getSudokuSolution(sudo));
     }
+    createClue(textFieldId) {
+        let id = '#' + textFieldId.toString(),
+            i = Math.floor(textFieldId / 9),
+            j = textFieldId % 9
+        return { x: i, y: j, value: $(id).val() != ' ' ? parseInt($(id).val()) : 0, isClue: $(id).prop('disabled') ? true : false }
+    }
 
+    getPlayableSudoku() {
+        return Array.from({ length: 81 }, (value, i) => this.createClue(i))
+    }
 }
 
 module.exports = SudokuView

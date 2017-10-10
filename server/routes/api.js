@@ -64,9 +64,6 @@ router.route('/sudokus')
             sudoku_.difficulty = req.body.difficulty;
             sudoku_.lastPlayed = req.body.lastPlayed;
             sudoku_.playableSudoku = req.body.playableSudoku;
-            /**
-             * Aqui van las extracciones de los atributos del sudoku. 
-             */
             sudoku_.save(
                 (err) => {
                     if (err)
@@ -87,7 +84,6 @@ router.route('/sudokus')
                 });
         }
     );
-
 // ---> ON /sudokus/:sudoku_id
 //    PUT (UPDATE) -> updates the sudoku by id 
 //    GET (findById)-> get all the sudokus (accessed at GET http://localhost:9090/api/sudokus)
@@ -113,46 +109,6 @@ router.route('/sudokus/:user')
                             res.send(err);
                         res.json(sudoku);
                     });*/
-        }
-    )
-    .put(
-        (req, res) => {
-            SudokuModel.findById(req.params.sudoku_id,
-                (err, sudoku) => {
-
-                    if (err)
-                        res.send(err);
-
-                    sudoku.user = req.body.user;
-                    sudoku.lastPlayed = req.body.lastPlayed;
-                    sudoku.sudokuSolution = req.body.sudokuSolution;
-                    sudoku.playableSudoku = req.body.playableSudoku;
-                    /**
-                     * Aqui van las extracciones de los atributos del sudoku. 
-                     */
-                    sudoku.save(
-                        (err) => {
-                            if (err)
-                                res.send(err);
-
-                            res.json({ status: 'ok', message: 'Sudoku updated!' });
-                        });
-
-                });
-        }
-    )
-    .delete(
-        (req, res) => {
-            SudokuModel.remove({
-                    _id: req.params.sudoku_id
-                },
-                (err, sudoku) => {
-                    if (err)
-                        res.send(err);
-
-                    res.json({ status: 'ok', message: 'Sudoku successfully deleted!' });
-                }
-            );
         }
     );
 router.route('/sudoku/:id')
@@ -246,5 +202,53 @@ router.route('/checkSudoku/:matrix')
             (result) ? res.json({ text: 'Sudoku has solution!!' }): res.json({ text: 'Sudoku has no solution!!' })
         }
     );
+
+//router.route('/save/:userGame')
+router.route('/save')
+    .post(
+        (req, res) => {
+            let sudoku_ = new SudokuModel(); // create a new instance of the Sudoku model
+            let reqSudokuGame = JSON.parse(req.data);
+            console.log("Este es el req.data" + reqSudokuGame);
+
+            sudoku_.user = reqSudokuGame.user;
+            sudoku_.difficulty = reqSudokuGame.difficulty;
+            sudoku_.lastPlayed = reqSudokuGame.lastPlayed;
+            sudoku_.playableSudoku = reqSudokuGame.lastPlayed;
+
+            sudoku_.save(
+                (err) => {
+                    if (err)
+                        res.send(err);
+                    res.json({ message: 'Sudoku saved succesfully!', "sudokuId": sudoku_._id });
+                }
+            );
+        }
+    )
+    .put(
+        (req, res) => {
+            SudokuModel.findById(req.params.sudoku_id,
+                (err, sudoku) => {
+
+                    if (err)
+                        res.send(err);
+
+                    sudoku.user = req.body.user;
+                    sudoku.lastPlayed = req.body.lastPlayed;
+                    sudoku.sudokuSolution = req.body.sudokuSolution;
+                    sudoku.playableSudoku = req.body.playableSudoku;
+
+                    sudoku.save(
+                        (err) => {
+                            if (err)
+                                res.send(err);
+
+                            res.json({ status: 'ok', message: 'Sudoku updated!' });
+                        });
+
+                });
+        }
+    );
+
 
 module.exports = router;

@@ -74,5 +74,5 @@ export class SudokuComponent implements OnInit {
    this._sudokuView.solveSudoku();
    console.log('Resuelto desde el cliente')
   }
-
+  
 }

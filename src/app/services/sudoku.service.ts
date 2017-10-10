@@ -1,6 +1,7 @@
 import { Injectable, NgModule } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
+import { Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 @Injectable()
 export class SudokuService {
@@ -30,9 +31,21 @@ export class SudokuService {
     return this._http.get(_url)
     .map((response: Response) => response.json());
   }
-  saveSudoku(sudoku){
-    
-    let _url = './api/sudokus/' + sudoku._id;
 
+  
+
+  saveSudoku(saveObject){
+    //let _url = './api/save/'+ JSON.stringify(saveObject);
+    let _url = './api/save';
+    // if( id != null) {
+    //   //POST
+    // }
+    // if() //PUT
+
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this._http.post(_url, {"user": saveObject.user}, options)
+    .map((response: Response) => response.json());
   }
 }
