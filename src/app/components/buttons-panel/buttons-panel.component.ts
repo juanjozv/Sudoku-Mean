@@ -40,6 +40,7 @@ export class ButtonsPanelComponent implements OnInit {
 
   //------------------------------- User Options ----------
   loadByLevelSudoku(d){
+    this._userOptionsView.storage(d);
     this._sudokuService.loadByLevelSudoku(d).subscribe(res => { this.repaintMatrix(res)});
   }
 
