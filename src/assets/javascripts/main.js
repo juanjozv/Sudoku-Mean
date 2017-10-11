@@ -1,3 +1,12 @@
+/**
+ * Sudoku
+ * @author juanjozv@gmail.com
+ * @author osqui.salazar@gmail.com
+ * @author manca64@gmail.com
+ * @author leogodinezs15@gmail.com
+ */
+
+
 $(document).ready(function() {
     let row = 0,
         column = 0;

@@ -1,8 +1,9 @@
 /**
- * Sudoku REST-API
- * @author juanjozv@gmail.com 
- * @author osqui.salazar@gmail.com 
- * @since 2017
+ * Sudoku
+ * @author juanjozv@gmail.com
+ * @author osqui.salazar@gmail.com
+ * @author manca64@gmail.com
+ * @author leogodinezs15@gmail.com
  */
 
 // IMPORTS

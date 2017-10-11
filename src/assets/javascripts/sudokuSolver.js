@@ -1,6 +1,15 @@
-class SudokuSolver{
+/**
+ * Sudoku
+ * @author juanjozv@gmail.com
+ * @author osqui.salazar@gmail.com
+ * @author manca64@gmail.com
+ * @author leogodinezs15@gmail.com
+ */
 
-    constructor(){
+
+class SudokuSolver {
+
+    constructor() {
 
     }
 
@@ -8,7 +17,7 @@ class SudokuSolver{
         let i = row;
         while (i < 9) {
             if (sudoku.table[i].indexOf(' ') != -1) // se verifica que haya un espacio vacío en la fila correspondiente
-                return { row: i, column: sudoku.table[i].indexOf(' ') }; //si lo hay se retorna un objeto con la fila y 
+                return { row: i, column: sudoku.table[i].indexOf(' ') }; //si lo hay se retorna un objeto con la fila y
             //la columna que corresponden al espacio vacío más cercano
             i++; // se baja a la siguiente fila si no hay espacios desocupados
         }
@@ -61,13 +70,13 @@ class SudokuSolver{
         //se retorna true cuando ya no haya una siguiente celda de la matriz que llenar
         return true;
     }
-    hasSolution(sudoku){
-        if(sudoku.isSudoku()){
+    hasSolution(sudoku) {
+        if (sudoku.isSudoku()) {
             return this.solveSudoku(0, 0, sudoku)
         }
         return false
     }
-    getSudokuSolution(sudoku){
+    getSudokuSolution(sudoku) {
         this.solveSudoku(0, 0, sudoku)
         return sudoku.table;
     }
