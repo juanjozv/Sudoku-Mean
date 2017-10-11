@@ -1,3 +1,12 @@
+/**
+ * Sudoku
+ * @author juanjozv@gmail.com
+ * @author osqui.salazar@gmail.com
+ * @author manca64@gmail.com
+ * @author leogodinezs15@gmail.com
+ */
+
+
 function* sudokuIterator(start = 0, next = x => x + 1, stop = NEVER) {
     for (let i = start; !stop(i);) {
         yield i;
@@ -7,16 +16,16 @@ function* sudokuIterator(start = 0, next = x => x + 1, stop = NEVER) {
 
 class Sudoku {
     constructor(obj) {
-        this.table = obj.table;
-        this.rows = obj.rows;
-        this.columns = obj.columns;
-        this.sections = obj.sections;
-        [this.start, this.delta, this.stop] = [0, i => i + 1, i => i == 9];
-    }
-    [Symbol.iterator]() {
-        this.iter = sudokuIterator(this.start, this.delta, this.stop);
-        return this;
-    }
+            this.table = obj.table;
+            this.rows = obj.rows;
+            this.columns = obj.columns;
+            this.sections = obj.sections;
+            [this.start, this.delta, this.stop] = [0, i => i + 1, i => i == 9];
+        }
+        [Symbol.iterator]() {
+            this.iter = sudokuIterator(this.start, this.delta, this.stop);
+            return this;
+        }
     next() {
         return this.iter.next();
     }
@@ -35,16 +44,16 @@ class Sudoku {
     hasLegalValues(array) {
         return (new Set(array)).size === array.length; // se verifica si hay numeros repetidos en un array cualquiera
     }
-    isValueRepeated(position){
+    isValueRepeated(position) {
         // se verifica si hay un valor repetido en la fila, columna o cuadrícula en la posicion "position"
-        return (!this.hasLegalValues(this.rows[position]) || !this.hasLegalValues(this.columns[position]) 
-                || !this.hasLegalValues(this.sections[Math.floor(position / 3)][position % 3]))
+        return (!this.hasLegalValues(this.rows[position]) || !this.hasLegalValues(this.columns[position]) ||
+            !this.hasLegalValues(this.sections[Math.floor(position / 3)][position % 3]))
     }
     isSudoku() {
         //Se recorren todas las filas, columnas y cuadriculas del sudoku para verificar si algun valor se repite,
         //si se repite no es un sudoku
-        for(let i of this){
-           if(this.isValueRepeated(i)) return false;
+        for (let i of this) {
+            if (this.isValueRepeated(i)) return false;
         }
         return true;
     }

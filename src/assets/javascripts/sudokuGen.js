@@ -1,3 +1,12 @@
+/**
+ * Sudoku
+ * @author juanjozv@gmail.com
+ * @author osqui.salazar@gmail.com
+ * @author manca64@gmail.com
+ * @author leogodinezs15@gmail.com
+ */
+
+
 const numbers = Array.from({ length: 9 }, (v, i) => i + 1);
 const coordinates = [];
 const { Random } = require('./random.js');
@@ -34,15 +43,15 @@ function* sudokuGenerator(start = 0, next = x => x + 1, stoprow = i => i == 8, s
     yield* initialSudokuNumberGenerator(0, x => x + 3, x => x == 9, possibleValues); // se hace yield del primer paso del patron
     for (let i = start; !stoprow(i);) { // i < 8 debido a que ya se ingresó un número de los 9 posibles en la matriz
         pos = random.rand(0, possibleValues.length), // lo mismo que el anterior, se elije una posicion random y su respectivo numero
-        number = possibleValues[pos],
-        lastNumberCoordinates = coordinates.pop(), // se le hace pop a el array de cordenadas para así tener todas las coordenadas del numero ingresado anteriormente
+            number = possibleValues[pos],
+            lastNumberCoordinates = coordinates.pop(), // se le hace pop a el array de cordenadas para así tener todas las coordenadas del numero ingresado anteriormente
 
-        coordinates.push([]), // se ingresa un array que tendrá las coordenadas del numero ingresado actualmente
-        possibleValues.splice(pos, 1); // se elimina el numero ingresado para que no se repita
+            coordinates.push([]), // se ingresa un array que tendrá las coordenadas del numero ingresado actualmente
+            possibleValues.splice(pos, 1); // se elimina el numero ingresado para que no se repita
 
         for (let j = start; !stopcol(j);) {
-            if ((j + 1) % 3 == 0) { // si la cuadricula de referencia a la actual está debajo de la que se está llenando actualmente 
-               
+            if ((j + 1) % 3 == 0) { // si la cuadricula de referencia a la actual está debajo de la que se está llenando actualmente
+
                 // si es diferente de 9 es porque no es la última cuadrícula, entonces solo se tomarán
                 //de referencia las coordenadas de la cuadrícula de abajo, pero si es 9 se tomarán de referencia
                 // las coordenadas de la primer cuadrícula de la matriz, aquí es cuando se termina de colocar

@@ -1,3 +1,11 @@
+/**
+ * Sudoku
+ * @author juanjozv@gmail.com
+ * @author osqui.salazar@gmail.com
+ * @author manca64@gmail.com
+ * @author leogodinezs15@gmail.com
+ */
+
 import { Component, OnInit } from '@angular/core';
 import * as SudokuView from './sudokuView';
 import { SudokuService } from '../../services/sudoku.service';
@@ -26,7 +34,7 @@ export class SudokuComponent implements OnInit {
       res =>  this.paintSudokuView(res),
       err =>  this.createNewSudokuClient(),
       () => console.log('kha')
-      
+
     );
   }
 
@@ -42,7 +50,7 @@ export class SudokuComponent implements OnInit {
 
     let matrixAux = this._sudokuView.getMatrix();
     this._sudokuService.checkSudoku(matrixAux).subscribe(
-      res =>  this.result(res), 
+      res =>  this.result(res),
       err => this.checkSudokuClient(),
       () => console.log('kha')
     );
@@ -52,7 +60,7 @@ export class SudokuComponent implements OnInit {
     this._sudokuService.solveSudoku(this._matrix).subscribe(
       res =>  this._sudokuView.paint(res),
       err => this.solveSudokuClient(),
-      () => console.log('kha') 
+      () => console.log('kha')
     );
   }
 
@@ -74,5 +82,5 @@ export class SudokuComponent implements OnInit {
    this._sudokuView.solveSudoku();
    console.log('Resuelto desde el cliente')
   }
-  
+
 }
