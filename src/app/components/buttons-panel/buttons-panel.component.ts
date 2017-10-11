@@ -65,7 +65,7 @@ export class ButtonsPanelComponent implements OnInit {
     res.playableSudoku.forEach((e) => {
       if (e.value == 0) e.value = ' ';
     });
-    this._sudokuComponent.paintSudokuView(res);
+    this._sudokuComponent.paintLoadSudokuView(res);
   }
 
   loadSavedGameInMatrix(id) {

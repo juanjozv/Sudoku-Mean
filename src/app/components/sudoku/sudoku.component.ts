@@ -23,26 +23,29 @@ export class SudokuComponent implements OnInit {
 
   createNewSudoku() {
     this._sudokuService.getNewSudoku('leo', 'normal', 'hoy').subscribe(
-      res =>  this.paintSudokuView(res),
-      err =>  this.createNewSudokuClient(),
-      () => console.log('kha')
-      
+      res => this.paintSudokuView(res),
+      err => this.createNewSudokuClient()
+
     );
   }
 
+  paintLoadSudokuView(res_) {
+    res_.playableSudoku.forEach(elem => {
+      (!elem.isClue) ? this._matrix[elem.x][elem.y] = ' ' : this._matrix[elem.x][elem.y] = elem.value;
+    });
+    this._sudokuView.paintLoadMatrix(res_.playableSudoku);
+  }
   paintSudokuView(res_) {
-   // console.log(res_)
     res_.playableSudoku.forEach(elem => {
       this._matrix[elem.x][elem.y] = elem.value;
     });
     this._sudokuView.paint(this._matrix);
   }
-
   checkSudoku() {
 
     let matrixAux = this._sudokuView.getMatrix();
     this._sudokuService.checkSudoku(matrixAux).subscribe(
-      res =>  this.result(res), 
+      res => this.result(res),
       err => this.checkSudokuClient(),
       () => console.log('kha')
     );
@@ -50,9 +53,8 @@ export class SudokuComponent implements OnInit {
 
   solveSudoku() {
     this._sudokuService.solveSudoku(this._matrix).subscribe(
-      res =>  this._sudokuView.paint(res),
-      err => this.solveSudokuClient(),
-      () => console.log('kha') 
+      res => this._sudokuView.paint(res),
+      err => this.solveSudokuClient()
     );
   }
 
@@ -64,15 +66,15 @@ export class SudokuComponent implements OnInit {
     this._sudokuView.paint(this._matrix);
   }
   // Client algorithms
-  checkSudokuClient(){
+  checkSudokuClient() {
     this._sudokuView.checkModal(this._sudokuView.checkSudoku());
   }
-  createNewSudokuClient(){
+  createNewSudokuClient() {
     this._sudokuView.generateSudoku();
   }
-  solveSudokuClient(){
-   this._sudokuView.solveSudoku();
-   console.log('Resuelto desde el cliente')
+  solveSudokuClient() {
+    this._sudokuView.solveSudoku();
+    console.log('Resuelto desde el cliente')
   }
-  
+
 }

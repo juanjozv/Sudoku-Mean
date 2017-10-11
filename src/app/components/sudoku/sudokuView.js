@@ -68,6 +68,13 @@ class SudokuView {
                 if (num != ' ') $('#' + (j + 9 * i).toString()).prop('disabled', true);
             }));
     }
+    paintLoadMatrix(newMatrix) {
+        newMatrix.forEach((elem, i) => {
+            $('#' + (elem.y + 9 * elem.x).toString()).prop('disabled', false)
+                .val(elem.value)
+            if (elem.isClue) $('#' + (elem.y + 9 * elem.x).toString()).prop('disabled', true);
+        });
+    }
     getMatrix() {
         return Array.from({ length: 9 }, (row, i) =>
             Array.from({ length: 9 }, (value, j) =>
