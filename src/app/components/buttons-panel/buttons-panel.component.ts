@@ -32,6 +32,8 @@ export class ButtonsPanelComponent implements OnInit {
     this._sudokuComponent.createNewSudoku();
     this._timeComponent.stopTimer();
     this._timeComponent.startTimer();
+    this._userOptionsView.setStorageDifficulty('random');
+    this._userOptionsView.setStorageSudokuId('na', 'true');
   }
   checkSudoku() {
     this._sudokuComponent.checkSudoku();
@@ -45,13 +47,13 @@ export class ButtonsPanelComponent implements OnInit {
     this._sudokuComponent.solveSudoku();
     this._timeComponent.showLastTime();
   }
-
-  //------------------------------- User Options ----------
-  loadByLevelSudoku(d){
-    this._userOptionsView.storage(d);
-    this._sudokuService.loadByLevelSudoku(d).subscribe(res => { this.repaintMatrix(res)});
+  loadByLevelSudoku(d) {
+    this._userOptionsView.setStorageDifficulty(d);
+    this._sudokuService.loadByLevelSudoku(d).subscribe(res => { this.repaintMatrix(res) });
+    this._userOptionsView.setStorageSudokuId('na', 'true');
   }
 
+  //------------------------------- User Options ----------
   loadSudokus() {
     let user = this._userOptionsView.getUser();
     if (user != "empty") {
@@ -80,7 +82,6 @@ export class ButtonsPanelComponent implements OnInit {
     this._sudokuService.loadSudoku(id).subscribe(res => { this.repaintLoadMatrix(res); });
   }
 
-
   showSudokus(sudokusList) {
     let row;
     $('#userGames').html('');
@@ -96,19 +97,30 @@ export class ButtonsPanelComponent implements OnInit {
       this.loadSavedGameInMatrix(sudo._id);
       this._timeComponent.stopTimer();
       this._timeComponent.startTimer();
+      this._userOptionsView.setStorageSudokuId(sudo._id, 'false');
     })
+    
   }
 
+  showSaveModal() {
+    this._userOptionsView.showSaveGameModal()
+  }
 
   saveGame() {
     let gameUser = this._userOptionsView.getUser();
-    let gameDifficulty = "normal"; //Obtener la dificultad del juego
+    let gameDifficulty = this._userOptionsView.getStorageDifficulty();
     let gameDate = this._userOptionsView.getCurrentDate();
     let matrixAux = this._sudokuComponent._sudokuView.getPlayableSudoku();
-
-    let saveObject = {user: gameUser, difficulty: gameDifficulty, lastPlayed: gameDate, playableSudoku: matrixAux}
+    let gameId = this._userOptionsView.getStorageSudokuId();
+    let isNewGame = this._userOptionsView.getIsNewGame(); //returns true or false
+   
+    let saveObject = { _id: gameId, user: gameUser, difficulty: gameDifficulty, lastPlayed: gameDate, playableSudoku: matrixAux }
     if (gameUser != "empty") {
-      this._sudokuService.saveSudoku(saveObject).subscribe(res => {  });
+      this._sudokuService.saveSudoku(saveObject, isNewGame).subscribe(
+        res => {
+          this.showSaveModal();
+          this._userOptionsView.setStorageSudokuId(res.sudokuId, 'false');
+        });
     }
   }
 }

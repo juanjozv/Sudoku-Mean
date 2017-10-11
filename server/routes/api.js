@@ -200,10 +200,11 @@ router.route('/save')
 
                 sudoku_.save((err) => {
                     if (err) res.send(err);
-                    res.json({ status: 'ok', message: 'Sudoku updated!' });
+                    res.json({ status: 'ok', message: 'Sudoku updated!', "sudokuId": sudoku_._id });
                 });
             });
     });
+
 
 
 module.exports = router;

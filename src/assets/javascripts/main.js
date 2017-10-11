@@ -47,4 +47,5 @@ $(document).ready(function() {
                 $(this).val(v);
             }
         })
+    window.sessionStorage.clear();
 })

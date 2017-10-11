@@ -8,13 +8,36 @@ class UserOptionsView {
         $('#warningLogin').modal();
         return "empty";
     }
+
     showModal() {
         $('#loadModal').modal();
     }
-    storage(d) {
-        window.sessionStorage.setItem('difficulty', d);
-        //let data = window.sessionStorage.getItem('difficulty');
+
+    showSaveGameModal() {
+        $('#saveModal').modal();
     }
+
+    setStorageDifficulty(d) {
+        window.sessionStorage.setItem('difficulty', d);
+    }
+
+    getStorageDifficulty() {
+        return window.sessionStorage.getItem('difficulty');
+    }
+
+    setStorageSudokuId(newId, newGame) {
+        window.sessionStorage.setItem('_id', newId);
+        window.sessionStorage.setItem('newGame', newGame);
+    }
+
+    getStorageSudokuId() {
+        return window.sessionStorage.getItem('_id');
+    }
+
+    getIsNewGame() {
+        return (window.sessionStorage.getItem('newGame') == 'true') ? true : false;
+    }
+
     createRow(sudoku) {
         let icon = '<td><span class="glyphicon glyphicon-user"></span></td>',
             difficulty = '<td>' + sudoku.difficulty + '</td>',
@@ -36,6 +59,7 @@ class UserOptionsView {
         today = yyyy + '-' + mm + '-' + dd;
         return today;
     }
+
 }
 
 module.exports = UserOptionsView
