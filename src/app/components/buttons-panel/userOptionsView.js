@@ -5,7 +5,7 @@ class UserOptionsView {
         let user = $('#showUsername').text();
         if (user != "")
             return user;
-        window.alert("You must be logged in")
+        $('#warningLogin').modal();
         return "empty";
     }
     showModal() {

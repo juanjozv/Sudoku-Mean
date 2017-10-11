@@ -1,3 +1,11 @@
+/**
+ * Sudoku
+ * @author juanjozv@gmail.com
+ * @author osqui.salazar@gmail.com
+ * @author manca64@gmail.com
+ * @author leogodinezs15@gmail.com
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { SudokuService } from '../../services/sudoku.service';
 import { SudokuComponent } from '../sudoku/sudoku.component';
@@ -65,7 +73,7 @@ export class ButtonsPanelComponent implements OnInit {
     res.playableSudoku.forEach((e) => {
       if (e.value == 0) e.value = ' ';
     });
-    this._sudokuComponent.paintSudokuView(res);
+    this._sudokuComponent.paintLoadSudokuView(res);
   }
 
   loadSavedGameInMatrix(id) {

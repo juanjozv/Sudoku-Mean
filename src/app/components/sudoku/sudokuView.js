@@ -1,3 +1,11 @@
+/**
+ * Sudoku
+ * @author juanjozv@gmail.com
+ * @author osqui.salazar@gmail.com
+ * @author manca64@gmail.com
+ * @author leogodinezs15@gmail.com
+ */
+
 const NEVER = x => false;
 const { Sudoku } = require('../../../../src/assets/javascripts/sudoku.js');
 const { SudokuSolver } = require('../../../../src/assets/javascripts/sudokuSolver.js');
@@ -67,6 +75,13 @@ class SudokuView {
                     .val(num)
                 if (num != ' ') $('#' + (j + 9 * i).toString()).prop('disabled', true);
             }));
+    }
+    paintLoadMatrix(newMatrix) {
+        newMatrix.forEach((elem, i) => {
+            $('#' + (elem.y + 9 * elem.x).toString()).prop('disabled', false)
+                .val(elem.value)
+            if (elem.isClue) $('#' + (elem.y + 9 * elem.x).toString()).prop('disabled', true);
+        });
     }
     getMatrix() {
         return Array.from({ length: 9 }, (row, i) =>

@@ -1,8 +1,9 @@
 /**
- * Sudoku REST-API
- * @author juanjozv@gmail.com 
- * @author osqui.salazar@gmail.com 
- * @since 2017
+ * Sudoku
+ * @author juanjozv@gmail.com
+ * @author osqui.salazar@gmail.com
+ * @author manca64@gmail.com
+ * @author leogodinezs15@gmail.com
  */
 
 const { SudokuGen } = require('../../src/assets/javascripts/sudokuGen.js');
@@ -27,7 +28,7 @@ let SudokuModel = require('../../db/models/sudokuModel.js');
 
 // API SETUP
 
-// 1) Create router     
+// 1) Create router
 let router = express.Router();
 
 // 2) Config paths
@@ -40,7 +41,7 @@ router.use(
 );
 
 // port stands for the port that is set in Server.js
-// Route to test (accessed at GET http://localhost:port/api) 
+// Route to test (accessed at GET http://localhost:port/api)
 router.get('/',
     (req, res) => res.json({ message: '*** Sudoku Rest API is working fine! ***' })
 );
