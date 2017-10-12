@@ -114,8 +114,8 @@ router.route('/newSudoku')
         let object = { user: 'default', difficulty: 'random', lastPlayed: '2017-09-09', playableSudoku: [] };
         for (let actualValue of sudokuGen) {
             randomClue = random.rand(1, 6);
-            clue = (clueCount < 17) ? true : ((randomClue == 3)  ? true : false)
-            playableSudokuValues = { x: actualValue.row, y: actualValue.col, value: actualValue.num, isClue: clue }
+            clue = (clueCount < 17) ? true : ((randomClue == 3) ? true : false)
+            playableSudokuValues = { x: actualValue.row, y: actualValue.col, value: clue ? actualValue.num : 0, isClue: clue }
             object.playableSudoku.push(playableSudokuValues);
             clueCount++
         }
@@ -126,7 +126,7 @@ router.route('/newSudokuDifficulty/:difficulty')
     .get((req, res) => {
         let reqDifficulty = '';
         reqDifficulty += req.params.difficulty;
-        SudokuModel.find({ 'difficulty': reqDifficulty }, '_id user difficulty lastPlayed playableSudoku',
+        SudokuModel.find({ 'difficulty': reqDifficulty, 'user': 'default' }, '_id user difficulty lastPlayed playableSudoku',
             (err, sudokus) => {
                 if (err) res.send(err);
                 let pos = random.rand(0, (sudokus.length));
