@@ -1,9 +1,9 @@
 /**
- * Sudoku
- * @author juanjozv@gmail.com
- * @author osqui.salazar@gmail.com
- * @author manca64@gmail.com
- * @author leogodinezs15@gmail.com
+ * Sudoku Grupo 9  Horario: 1 pm
+ * @author Juan José Zaldívar Vargas
+ * @author Oscar Salazar Lizano
+ * @author Manfred Zúñiga Vargas
+ * @author Leonel Godínez Sánchez
  */
 
 a:link {
@@ -20,16 +20,6 @@ a:hover {
     color: #c60;
     text-decoration: underline;
 }
-
-
-/*
- img {
-     border-left:      1px outset white;
-     border-right:     1px outset black;
-     border-top:       1px outset white;
-     border-bottom:    1px outset black;
-     }
-*/
 
 .feldx {
     background-color: white;

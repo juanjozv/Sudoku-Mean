@@ -1,3 +1,11 @@
+/**
+ * Sudoku Grupo 9  Horario: 1 pm
+ * @author Juan José Zaldívar Vargas
+ * @author Oscar Salazar Lizano
+ * @author Manfred Zúñiga Vargas
+ * @author Leonel Godínez Sánchez
+ */
+
 import { Injectable, NgModule } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
