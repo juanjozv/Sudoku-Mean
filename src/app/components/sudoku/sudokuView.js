@@ -83,10 +83,10 @@ class SudokuView {
             sudoku[elem.x][elem.y] = elem.isClue ? elem.value : ' '
 
             // clean textfields
-            elem.isClue ? $('#' + (elem.y + 9 * elem.x).toString()).prop('disabled', true)
+            elem.isClue || elem.value == null ? $('#' + (elem.y + 9 * elem.x).toString()).prop('disabled', true)
                 .val(elem.value) : $('#' + (elem.y + 9 * elem.x).toString()).prop('disabled', false)
                     .val(elem.value == 0 ? ' ' : elem.value)
-            if(elem.value == null) $('#' + (elem.y + 9 * elem.x).toString()).prop('disabled', true)
+           
 
         });
     }
