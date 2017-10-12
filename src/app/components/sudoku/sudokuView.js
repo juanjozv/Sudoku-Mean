@@ -22,7 +22,8 @@ let createFill = (td, tr, id) => {
         maxlength: "1",
         size: "1",
         readonly: "",
-        value: null
+        value: null,
+        disabled: true
     })
         .appendTo($('<td />')
             .attr({

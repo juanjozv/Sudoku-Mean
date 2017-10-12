@@ -44,28 +44,17 @@ class UserOptionsView {
         return JSON.parse(window.localStorage.getItem(id));
     }
     getStorageClientByUser(user) {
-        let list = Array.from({ length: window.localStorage.length }, v => '');
-        let listAux = [];
-        let obj;
-        list.forEach((elem, i) => {
-            obj = JSON.parse(window.localStorage.getItem(window.localStorage.key(i)));
-            if (obj.user == user) listAux.push(obj);
-        });
-        return listAux;
-        //if(window.localStorage.key(i))
-        //}
-        //JSON.parse(window.localStorage.getItem(id));
+        return Array.from({ length: window.localStorage.length },
+             (v, i) => JSON.parse(window.localStorage.getItem(window.localStorage.key(i))))
+             .filter(v => v.user == user)
     }
+   
     getSudokuIdStorage(id) {
-        let list = Array.from({ length: window.localStorage.length }, v => '');
-        let listAux = [];
-        let obj, result;
-        list.forEach((elem, i) => {
-            obj = JSON.parse(window.localStorage.getItem(window.localStorage.key(i)));
-            if (obj._id == id) result = obj;
-        });
-        return result;
+        return Array.from({ length: window.localStorage.length }, 
+            (v, i) => JSON.parse(window.localStorage.getItem(window.localStorage.key(i))))
+        .find(v => v._id === id);
     }
+
     createRow(sudoku) {
         let icon = '<td><span class="glyphicon glyphicon-user"></span></td>',
             difficulty = '<td>' + sudoku.difficulty + '</td>',
