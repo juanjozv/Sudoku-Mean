@@ -119,7 +119,7 @@ export class ButtonsPanelComponent implements OnInit {
           this.saveGameClient(saveObject);
         },
         err => { 
-          saveObject._id=window.localStorage.length; 
+          if(saveObject._id == 'na') saveObject._id=window.localStorage.length; 
           this.saveGameClient(saveObject);
           });
     }
