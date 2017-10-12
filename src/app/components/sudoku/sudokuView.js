@@ -22,7 +22,8 @@ let createFill = (td, tr, id) => {
             maxlength: "1",
             size: "1",
             readonly: "",
-            value: null
+            value: null,
+            disabled: true
         })
         .appendTo($('<td />')
             .attr({
@@ -83,8 +84,19 @@ class SudokuView {
 
             // clean textfields
             elem.isClue ? $('#' + (elem.y + 9 * elem.x).toString()).prop('disabled', true)
-                .val(elem.value) : $('#' + (elem.y + 9 * elem.x).toString()).prop('disabled', false)
+                .val(elem.value) : $('#' + (elem.y + 9 * elem.x).toString()).prop('disabled', false) <<
+                <<
+                <<
+                <
+                HEAD
+                .val(elem.value == 0 ? ' ' : elem.value) ===
+                ===
+                =
                 .val(elem.value == 0 ? ' ' : elem.value)
+            if (elem.value == null) $('#' + (elem.y + 9 * elem.x).toString()).prop('disabled', true) >>>
+                >>>
+                >
+                b43c1119ac88af68daad603afc79afadbc3c3f2d
 
         });
     }
