@@ -58,7 +58,10 @@ export class ButtonsPanelComponent implements OnInit {
   loadSudokus() {
     let user = this._userOptionsView.getUser();
     if (user != "empty") {
-      this._sudokuService.loadUserSudokus(user).subscribe(res => { this.showSudokus(res); });
+      this._sudokuService.loadUserSudokus(user).subscribe(
+        res => this.showSudokus(res),
+        err => this.showSudokus(this._userOptionsView.getStorageClientByUser(user))
+      );
     }
   }
   loadSudokuInMatrix(id) {
@@ -80,7 +83,10 @@ export class ButtonsPanelComponent implements OnInit {
   }
 
   loadSavedGameInMatrix(id) {
-    this._sudokuService.loadSudoku(id).subscribe(res => { this.repaintLoadMatrix(res); });
+    this._sudokuService.loadSudoku(id).subscribe(
+      res =>  this.repaintLoadMatrix(res),
+      err => this.repaintLoadMatrix(this._userOptionsView.getSudokuIdStorage(id)) 
+      );
   }
 
   showSudokus(sudokusList) {
@@ -100,7 +106,7 @@ export class ButtonsPanelComponent implements OnInit {
       this._timeComponent.startTimer();
       this._userOptionsView.setStorageSudokuId(sudo._id, 'false');
     })
-    
+
   }
 
   showSaveModal() {
@@ -114,14 +120,23 @@ export class ButtonsPanelComponent implements OnInit {
     let matrixAux = this._sudokuComponent._sudokuView.getPlayableSudoku();
     let gameId = this._userOptionsView.getStorageSudokuId();
     let isNewGame = this._userOptionsView.getIsNewGame(); //returns true or false
-   
+
     let saveObject = { _id: gameId, user: gameUser, difficulty: gameDifficulty, lastPlayed: gameDate, playableSudoku: matrixAux }
     if (gameUser != "empty") {
       this._sudokuService.saveSudoku(saveObject, isNewGame).subscribe(
         res => {
           this.showSaveModal();
           this._userOptionsView.setStorageSudokuId(res.sudokuId, 'false');
-        });
+          saveObject._id = res.sudokuId;
+          this.saveGameClient(saveObject);
+        },
+        err => { 
+          saveObject._id=window.localStorage.length; 
+          this.saveGameClient(saveObject);
+          });
     }
+  }
+  saveGameClient(obj) {
+    this._userOptionsView.storageClient(obj);
   }
 }

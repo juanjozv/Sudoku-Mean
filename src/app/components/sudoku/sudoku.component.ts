@@ -52,7 +52,7 @@ export class SudokuComponent implements OnInit {
       err => this.checkSudokuClient()
     );
   }
-
+  
   solveSudoku() {
     this._sudokuService.solveSudoku(this._matrix).subscribe(
       res => this.reload(res),
@@ -61,16 +61,13 @@ export class SudokuComponent implements OnInit {
   } 
   // client methods with server up
   paintLoadSudokuView(res_) {
-   /* res_.playableSudoku.forEach(elem => {
-      (!elem.isClue) ? this._matrix[elem.x][elem.y] = ' ' : this._matrix[elem.x][elem.y] = elem.value;
-    });*/
     this._sudokuView.paint(res_.playableSudoku, this._matrix);
   }
   
   checkedNotice(_res) {
     this._sudokuView.checkModal(_res.text);
   }
-  // server down too
+  //with the server down 
   reload(sudoku = this._matrix) {
     this._sudokuView.reload(sudoku);
   }
