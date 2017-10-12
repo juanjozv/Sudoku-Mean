@@ -9,6 +9,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as SudokuView from './sudokuView';
 import { SudokuService } from '../../services/sudoku.service';
+import * as userOptionView from '../buttons-panel/userOptionsView.js';
 
 
 @Component({
@@ -30,7 +31,7 @@ export class SudokuComponent implements OnInit {
   }
   // Service methods
   createNewSudoku() {
-    this._sudokuService.getNewSudoku('leo', 'normal', 'hoy').subscribe(
+    this._sudokuService.getNewSudoku('default', 'random', '01-01-2000').subscribe(
       res => this.paint(res),
       err => this.createNewSudokuClient()
 
@@ -72,7 +73,10 @@ export class SudokuComponent implements OnInit {
     this._sudokuView.checkModal(this._sudokuView.checkSudoku());
     console.log('Sudoku has checked locally')
   }
-  createNewSudokuClient(n = 81) {
+  createNewSudokuClient(n = 'random') {
+    let userOptions = new userOptionView();
+    userOptions.setStorageDifficulty(n);
+    userOptions.setStorageSudokuId('na', 'true');
     this._sudokuView.generateSudoku(n, this._matrix);
     console.log('Sudoku has created locally')
   }
