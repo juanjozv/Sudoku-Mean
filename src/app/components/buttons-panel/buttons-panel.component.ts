@@ -56,8 +56,9 @@ export class ButtonsPanelComponent implements OnInit {
   }
   loadByLevelSudoku(d) {
     this._userOptionsView.setStorageDifficulty(d);
-    //this._sudokuService.loadByLevelSudoku(d).subscribe(res => { this.repaintMatrix(res) });
     this._sudokuComponent.loadSudokuByDifficulty(d);
+    this._timeComponent.stopTimer();
+    this._timeComponent.startTimer();
     this._userOptionsView.setStorageSudokuId('na', 'true');
   }
 
@@ -136,5 +137,6 @@ export class ButtonsPanelComponent implements OnInit {
   }
   saveGameClient(obj) {
     this._userOptionsView.storageClient(obj);
+    this._userOptionsView.showSaveGameModal();
   }
 }

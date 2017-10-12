@@ -34,7 +34,7 @@ class SudokuSolver {
             .filter(n => busyValues.indexOf(n) == -1);
     }
 
-    solveSudoku(row, column, sudoku) {
+    solveSudoku(row, sudoku) {
         var auxRow, auxColumn, possibleValues,
             // método que busca la siguiente celda desocupada de la matriz,
             // y devuelve un object con dos properties: row y column
@@ -54,7 +54,7 @@ class SudokuSolver {
                 sudoku.pushNewValue(auxRow, auxColumn, number);
                 // hace un llamado recursivo, de modo que se repita el mismo proceso, pero en la
                 //siguiente celda de la fila y con posibles valores distintos
-                if (this.solveSudoku(auxRow, auxColumn, sudoku)) {
+                if (this.solveSudoku(auxRow, sudoku)) {
                     return true;
 
                 } else {
@@ -72,12 +72,12 @@ class SudokuSolver {
     }
     hasSolution(sudoku) {
         if (sudoku.isSudoku()) {
-            return this.solveSudoku(0, 0, sudoku)
+            return this.solveSudoku(0, sudoku)
         }
         return false
     }
     getSudokuSolution(sudoku) {
-        this.solveSudoku(0, 0, sudoku)
+        this.solveSudoku(0, sudoku)
         return sudoku.table;
     }
 
