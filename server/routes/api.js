@@ -1,9 +1,9 @@
 /**
- * Sudoku
- * @author juanjozv@gmail.com
- * @author osqui.salazar@gmail.com
- * @author manca64@gmail.com
- * @author leogodinezs15@gmail.com
+ * Sudoku Grupo 9  Horario: 1 pm
+ * @author Juan José Zaldívar Vargas
+ * @author Oscar Salazar Lizano
+ * @author Manfred Zúñiga Vargas
+ * @author Leonel Godínez Sánchez
  */
 
 const { SudokuGen } = require('../../src/assets/javascripts/sudokuGen.js');
@@ -13,6 +13,7 @@ const { Sudoku } = require('../../src/assets/javascripts/sudoku.js');
 
 let express = require('express');
 let mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
 const random = new Random();
 const Solver = new SudokuSolver();
@@ -48,8 +49,9 @@ router.get('/',
 
 
 // REST API
-//---> ON /sudokus
 
+
+//---> ON /sudokus
 //    POST (create one) -> create a Sudoku (accessed at POST http://localhost:port/api/sudokus)
 //    GET  (get all) -> gets all the sudokus (accessed at GET http://localhost:port/api/sudokus)
 
@@ -72,39 +74,70 @@ router.route('/sudokus')
     })
     .get((req, res) => {
         console.log('GET requested');
-        SudokuModel.find(
-            (err, sudokus) => {
-                if (err) res.send(err);
-                res.json(sudokus);
-            });
+        //exec() returns a promise
+        SudokuModel.find().exec()
+            .then(sudokus => { res.json(sudokus) })
+            .catch(err => { res.send("hay un error aqui" + err) });
     });
 
 
+
+
+//Load Sudoku Methods
+
+//Get all the sudokus from an user
 router.route('/sudokus/:user')
     .get((req, res) => {
         let reqUser = '';
         reqUser += req.params.user;
-        SudokuModel.find({ 'user': reqUser }, '_id difficulty lastPlayed ',
-            (err, sudokus) => {
-                if (err) res.send(err);
-                res.json(sudokus);
-            })
+        SudokuModel.find({ 'user': reqUser }, '_id difficulty lastPlayed ').exec()
+            .then(sudokus => { res.json(sudokus) })
+            .catch(err => { res.send(err) });
     });
 
-//Load
+//Gets a sudoku by Id
 router.route('/sudoku/:id')
     .get((req, res) => {
         let reqId = req.params.id;
-        SudokuModel.find({ _id: reqId }, 'user difficulty lastPlayed playableSudoku',
-            (err, sudoku) => {
-                if (err) res.send(err);
-                res.json(sudoku[0]);
-            })
+        SudokuModel.findById(reqId, 'user difficulty lastPlayed playableSudoku').exec()
+            .then(sudoku => { res.json(sudoku[0]) })
+            .catch(err => { res.send(err) });
     });
+
+//Save Sudokus Methods
+
+//If game is new, use post, if is an old game, updates it 
+router.route('/save')
+    .post((req, res) => {
+        let sudoku_ = new SudokuModel(); // create a new instance of the Sudoku model
+        sudoku_.user = req.body.user;
+        sudoku_.difficulty = req.body.difficulty;
+        sudoku_.lastPlayed = req.body.lastPlayed;
+        sudoku_.playableSudoku = req.body.playableSudoku;
+
+        sudoku_.save((err) => {
+            if (err) res.send(err);
+            res.json({ message: 'Sudoku saved succesfully!', "sudokuId": sudoku_._id });
+        });
+    })
+    .put((req, res) => {
+        SudokuModel.findById(req.body._id).exec()
+            .then(sudoku_ => {
+                sudoku_.lastPlayed = req.body.lastPlayed;
+                sudoku_.playableSudoku = req.body.playableSudoku;
+                sudoku_.save(err => {
+                    if (err) res.send(err);
+                    res.json({ status: 'ok', message: 'Sudoku updated!', "sudokuId": sudoku_._id });
+                });
+            })
+            .catch(err => { res.send(err) });
+    });
+
+
 
 //Algoritm Methods
 
-//Creates a new Soduku, used in the button: "random"
+//Creates a new Soduku
 router.route('/newSudoku')
     .get((req, res) => {
         let playableSudokuValues = {}
@@ -152,32 +185,7 @@ router.route('/checkSudoku/:matrix')
         (result) ? res.json({ text: 'This sudoku has solution!' }): res.json({ text: 'This sudoku has no solution!' })
     });
 
-router.route('/save')
-    .post((req, res) => {
-        let sudoku_ = new SudokuModel(); // create a new instance of the Sudoku model
-        sudoku_.user = req.body.user;
-        sudoku_.difficulty = req.body.difficulty;
-        sudoku_.lastPlayed = req.body.lastPlayed;
-        sudoku_.playableSudoku = req.body.playableSudoku;
 
-        sudoku_.save((err) => {
-            if (err) res.send(err);
-            res.json({ message: 'Sudoku saved succesfully!', "sudokuId": sudoku_._id });
-        });
-    })
-    .put((req, res) => {
-        SudokuModel.findById(req.body._id,
-            (err, sudoku_) => {
-                if (err) res.send(err);
-                sudoku_.lastPlayed = req.body.lastPlayed;
-                sudoku_.playableSudoku = req.body.playableSudoku;
-
-                sudoku_.save((err) => {
-                    if (err) res.send(err);
-                    res.json({ status: 'ok', message: 'Sudoku updated!', "sudokuId": sudoku_._id });
-                });
-            });
-    });
 
 
 
