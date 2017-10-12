@@ -52,7 +52,7 @@ export class SudokuComponent implements OnInit {
       err => this.checkSudokuClient()
     );
   }
-
+  
   solveSudoku() {
     this._sudokuService.solveSudoku(this._matrix).subscribe(
       res => this.reload(res),
@@ -66,7 +66,7 @@ export class SudokuComponent implements OnInit {
   checkedNotice(_res) {
     this._sudokuView.checkModal(_res.text);
   }
-  // server down too
+  //with the server down 
   reload(sudoku = this._matrix) {
     this._sudokuView.reload(sudoku);
   }

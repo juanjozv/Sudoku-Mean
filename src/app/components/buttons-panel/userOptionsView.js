@@ -37,7 +37,35 @@ class UserOptionsView {
     getIsNewGame() {
         return (window.sessionStorage.getItem('newGame') == 'true') ? true : false;
     }
-
+    storageClient(obj) {
+        window.localStorage.setItem(obj._id, JSON.stringify(obj));
+    }
+    getStorageClient(id) {
+        return JSON.parse(window.localStorage.getItem(id));
+    }
+    getStorageClientByUser(user) {
+        let list = Array.from({ length: window.localStorage.length }, v => '');
+        let listAux = [];
+        let obj;
+        list.forEach((elem, i) => {
+            obj = JSON.parse(window.localStorage.getItem(window.localStorage.key(i)));
+            if (obj.user == user) listAux.push(obj);
+        });
+        return listAux;
+        //if(window.localStorage.key(i))
+        //}
+        //JSON.parse(window.localStorage.getItem(id));
+    }
+    getSudokuIdStorage(id) {
+        let list = Array.from({ length: window.localStorage.length }, v => '');
+        let listAux = [];
+        let obj, result;
+        list.forEach((elem, i) => {
+            obj = JSON.parse(window.localStorage.getItem(window.localStorage.key(i)));
+            if (obj._id == id) result = obj;
+        });
+        return result;
+    }
     createRow(sudoku) {
         let icon = '<td><span class="glyphicon glyphicon-user"></span></td>',
             difficulty = '<td>' + sudoku.difficulty + '</td>',

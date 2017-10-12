@@ -14,7 +14,7 @@ export class SudokuService {
     let _url = './api/newSudokuDifficulty/' + d;
     return this._http.get(_url)
       .map((response: Response) => response.json())
-      //.catch(this.handleError)
+      .catch(this.handleError)
   }
 
   getNewSudoku(username: string, difficulty: string, lastPlayed: string) {
