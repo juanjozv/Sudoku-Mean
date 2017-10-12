@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "build": "ng build && node server.js",
     "test": "ng test",
     "lint": "ng lint",
@@ -32,7 +32,8 @@
     "mongoose": "^4.0.0",
     "morgan": "^1.0.0",
     "rxjs": "^5.4.2",
-    "zone.js": "^0.8.14"
+    "zone.js": "^0.8.14",
+    "nodemon": "^1.12.1"
   },
   "devDependencies": {
     "@angular/cli": "1.4.4",
