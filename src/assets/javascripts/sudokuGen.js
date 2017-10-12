@@ -56,8 +56,8 @@ function* sudokuGenerator(start = 0, next = x => x + 1, stoprow = i => i == 8, s
                 //de referencia las coordenadas de la cuadrícula de abajo, pero si es 9 se tomarán de referencia
                 // las coordenadas de la primer cuadrícula de la matriz, aquí es cuando se termina de colocar
                 //el numero actual en todas las cuadriculas de la matriz
-                ((j + 1) != 9) ? row = lastNumberCoordinates[j + 1].row - 3: row = lastNumberCoordinates[0].row + 6;
-                ((j + 1) != 9) ? col = lastNumberCoordinates[j + 1].col + 6: col = lastNumberCoordinates[0].col + 6;
+                ((j + 1) != 9) ? row = lastNumberCoordinates[j + 1].row - 3 : row = lastNumberCoordinates[0].row + 6;
+                ((j + 1) != 9) ? col = lastNumberCoordinates[j + 1].col + 6 : col = lastNumberCoordinates[0].col + 6;
             }
             // si la cuadrícula de referencia está a la derecha de la actual
             else {
@@ -82,14 +82,36 @@ function* sudokuGenerator(start = 0, next = x => x + 1, stoprow = i => i == 8, s
 
 class SudokuGen {
     constructor(n) {
-            [this.start, this.delta, this.stopRow, this.stopCol] = [0, x => x + 1, i => i == 8, j => j == 9];
-        }
-        [Symbol.iterator]() {
-            this.iter = sudokuGenerator(this.start, this.delta, this.stopRow, this.stopCol);
-            return this;
-        }
+        [this.start, this.delta, this.stopRow, this.stopCol] = [0, x => x + 1, i => i == 8, j => j == 9];
+    }
+    [Symbol.iterator]() {
+        this.iter = sudokuGenerator(this.start, this.delta, this.stopRow, this.stopCol);
+        return this;
+    }
     next() {
         return this.iter.next();
+    }
+    createSudokuStructure() {
+        return {
+            table: Array.from({ length: 9 }, v => new Array(9).fill(' ')),
+            rows: Array.from({ length: 9 }, v => []),
+            columns: Array.from({ length: 9 }, v => []),
+            sections: Array.from({ length: 3 }, (v, i) => Array.from({ length: 3 }, (v, i) => []))
+        }
+    }
+    getSudokuStructure(matrix){
+        let obj = this.createSudokuStructure()
+        matrix.forEach((row, i) => {
+            row.forEach((value, j) => {
+                if (value != " ") { 
+                    obj.table[i][j] = value;
+                    obj.rows[i].push(value);
+                    obj.columns[j].push(value);
+                    obj.sections[Math.floor(i / 3)][Math.floor(j / 3)].push(value);
+                }
+            })
+        });
+        return obj
     }
 }
 

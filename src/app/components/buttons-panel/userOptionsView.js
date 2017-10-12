@@ -45,6 +45,7 @@ class UserOptionsView {
             button = '<td><button type="button" data-target="#loadModal" data-toggle="modal" class="btn btn-primary badge" id="' + sudoku._id + '"><span class="glyphicon glyphicon-plus"></button></span>',
             row = '<tr>' + icon + difficulty + lastPlayed + button + '</tr>';
         return row;
+
     }
 
     getCurrentDate() {

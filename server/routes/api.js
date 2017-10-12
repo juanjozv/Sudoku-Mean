@@ -112,7 +112,7 @@ router.route('/newSudoku')
         let object = { user: 'default', difficulty: 'random', lastPlayed: '2017-09-09', playableSudoku: [] };
         for (let actualValue of sudokuGen) {
             clue = random.rand(1, 5);
-            (clue == 3 || clue == 1) ? playableSudokuValues = { x: actualValue.row, y: actualValue.col, value: actualValue.num, isClue: true }: playableSudokuValues = { x: actualValue.row, y: actualValue.col, value: ' ', isClue: false }
+            playableSudokuValues = { x: actualValue.row, y: actualValue.col, value: actualValue.num, isClue: (clue == 3 || clue == 1) ? true : false }
             object.playableSudoku.push(playableSudokuValues);
         }
         res.json(object);
@@ -132,49 +132,19 @@ router.route('/newSudokuDifficulty/:difficulty')
 
 router.route('/solveSudoku/:matrix')
     .get((req, res) => {
-        let matrix = JSON.parse(req.params.matrix);
-        let obj = {
-            table: matrix,
-            rows: Array.from({ length: 9 }, v => []),
-            columns: Array.from({ length: 9 }, v => []),
-            sections: Array.from({ length: 3 }, (v, i) => Array.from({ length: 3 }, (v, i) => []))
-        }
-        obj.table.forEach((row, i) => {
-            row.forEach((value, j) => {
-                if (value != " ") {
-                    obj.rows[i].push(value);
-                    obj.columns[j].push(value);
-                    obj.sections[Math.floor(i / 3)][Math.floor(j / 3)].push(value);
-                }
-            })
-        });
-
-        let s = new Sudoku(obj)
-        let result = Solver.getSudokuSolution(s);
+        let matrix = JSON.parse(req.params.matrix)
+        let obj = sudokuGen.getSudokuStructure(matrix)
+        let sudo = new Sudoku(obj)
+        let result = Solver.getSudokuSolution(sudo)
         res.json(result);
     });
 
 router.route('/checkSudoku/:matrix')
     .get((req, res) => {
-        let matrix = JSON.parse(req.params.matrix),
-            obj = {
-                table: matrix,
-                rows: Array.from({ length: 9 }, v => []),
-                columns: Array.from({ length: 9 }, v => []),
-                sections: Array.from({ length: 3 }, v => Array.from({ length: 3 }, v => []))
-            }
-        obj.table.forEach((row, i) => {
-            row.forEach((value, j) => {
-                if (value != " ") {
-                    obj.rows[i].push(value);
-                    obj.columns[j].push(value);
-                    obj.sections[Math.floor(i / 3)][Math.floor(j / 3)].push(value);
-                }
-            })
-        });
-
-        let s = new Sudoku(obj);
-        let result = Solver.hasSolution(s);
+        let matrix = JSON.parse(req.params.matrix)
+        let obj = sudokuGen.getSudokuStructure(matrix)
+        let sudo = new Sudoku(obj)
+        let result = Solver.hasSolution(sudo);
         (result) ? res.json({ text: 'This sudoku has solution!' }): res.json({ text: 'This sudoku has no solution!' })
     });
 

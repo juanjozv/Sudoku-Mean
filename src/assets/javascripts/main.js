@@ -42,7 +42,7 @@ $(document).ready(function() {
         })
         .keypress(function(e) {
             if (!isNaN(String.fromCharCode(e.which)) && String.fromCharCode(e.which) != 0) {
-                event.preventDefault(); //stop character from entering input
+                e.preventDefault(); //stop character from entering input
                 var v = String.fromCharCode(e.which)
                 $(this).val(v);
             }

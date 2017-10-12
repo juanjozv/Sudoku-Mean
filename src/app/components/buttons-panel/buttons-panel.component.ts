@@ -49,7 +49,8 @@ export class ButtonsPanelComponent implements OnInit {
   }
   loadByLevelSudoku(d) {
     this._userOptionsView.setStorageDifficulty(d);
-    this._sudokuService.loadByLevelSudoku(d).subscribe(res => { this.repaintMatrix(res) });
+    //this._sudokuService.loadByLevelSudoku(d).subscribe(res => { this.repaintMatrix(res) });
+    this._sudokuComponent.loadSudokuByDifficulty(d);
     this._userOptionsView.setStorageSudokuId('na', 'true');
   }
 
@@ -67,7 +68,7 @@ export class ButtonsPanelComponent implements OnInit {
     res.playableSudoku.forEach((e) => {
       if (!e.isClue) e.value = ' ';
     });
-    this._sudokuComponent.paintSudokuView(res);
+    this._sudokuComponent.paintLoadSudokuView(res);
   }
 
   // Load Saved Games
