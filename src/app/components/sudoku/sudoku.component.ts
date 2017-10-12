@@ -58,23 +58,24 @@ export class SudokuComponent implements OnInit {
       res => this.reload(res),
       err => this.solveSudokuClient()
     );
-  }
-
+  } 
+  // client methods with server up
   paintLoadSudokuView(res_) {
-    res_.playableSudoku.forEach(elem => {
+   /* res_.playableSudoku.forEach(elem => {
       (!elem.isClue) ? this._matrix[elem.x][elem.y] = ' ' : this._matrix[elem.x][elem.y] = elem.value;
-    });
-    this._sudokuView.paint(res_.playableSudoku);
+    });*/
+    this._sudokuView.paint(res_.playableSudoku, this._matrix);
   }
   
   checkedNotice(_res) {
     this._sudokuView.checkModal(_res.text);
   }
+  // server down too
   reload(sudoku = this._matrix) {
     this._sudokuView.reload(sudoku);
   }
 
-  // Client algorithms
+  // Client algorithms, they run only with server down
   checkSudokuClient() {
     this._sudokuView.checkModal(this._sudokuView.checkSudoku());
   }

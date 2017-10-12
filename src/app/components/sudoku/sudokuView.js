@@ -68,18 +68,24 @@ class SudokuView {
     create() {
         for (let i of this);
     }
+    // use for reload the sudoku table view with the original sudoku
     reload(sudoku) {
         sudoku.forEach((row, i) =>
             row.forEach((num, j) => {
                 $('#' + (j + 9 * i).toString()).val(num)
             }));
     }
-    paint(playableSudoku) {
+    // use for load a new sudoku in view and component
+    paint(playableSudoku, sudoku) {
         playableSudoku.forEach((elem, i) => {
-            $('#' + (elem.y + 9 * elem.x).toString()).prop('disabled', false)
-                .val(' ')
-            if (elem.isClue) $('#' + (elem.y + 9 * elem.x).toString()).prop('disabled', true)
-                .val(elem.value)
+            //clean position of original sudoku
+            sudoku[elem.x][elem.y] = elem.isClue ? elem.value : ' '
+             
+            // clean textfields
+            elem.isClue ? $('#' + (elem.y + 9 * elem.x).toString()).prop('disabled', true)
+                .val(elem.value) : $('#' + (elem.y + 9 * elem.x).toString()).prop('disabled', false)
+                    .val(' ')
+
         });
     }
     getMatrix() {
@@ -120,7 +126,7 @@ class SudokuView {
             }
         }
     }
-    
+
     solveSudoku(sudoku) {
         let obj = sudokuGen.getSudokuStructure(sudoku);
         let sudo = new Sudoku(obj);

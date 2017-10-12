@@ -107,13 +107,17 @@ router.route('/sudoku/:id')
 //Creates a new Soduku, used in the button: "random"
 router.route('/newSudoku')
     .get((req, res) => {
-        let playableSudokuValues = {};
-        let clue = 0;
+        let playableSudokuValues = {}
+        let randomClue = 0
+        let clueCount = 0
+        let clue = true
         let object = { user: 'default', difficulty: 'random', lastPlayed: '2017-09-09', playableSudoku: [] };
         for (let actualValue of sudokuGen) {
-            clue = random.rand(1, 5);
-            playableSudokuValues = { x: actualValue.row, y: actualValue.col, value: actualValue.num, isClue: (clue == 3 || clue == 1) ? true : false }
+            randomClue = random.rand(1, 6);
+            clue = (clueCount < 17) ? true : ((randomClue == 3)  ? true : false)
+            playableSudokuValues = { x: actualValue.row, y: actualValue.col, value: actualValue.num, isClue: clue }
             object.playableSudoku.push(playableSudokuValues);
+            clueCount++
         }
         res.json(object);
     });
