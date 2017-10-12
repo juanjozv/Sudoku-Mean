@@ -59,13 +59,6 @@ export class SudokuComponent implements OnInit {
       err => this.solveSudokuClient()
     );
   } 
-  // client methods with server up
-  /*loadSudoku(res_) {
-   /* res_.playableSudoku.forEach(elem => {
-      (!elem.isClue) ? this._matrix[elem.x][elem.y] = ' ' : this._matrix[elem.x][elem.y] = elem.value;
-    });*/
-   /* this._sudokuView.paintLoaded(res_.playableSudoku, this._matrix);
-}*/
   paint(res_){
     this._sudokuView.paint(res_.playableSudoku, this._matrix);
   }
