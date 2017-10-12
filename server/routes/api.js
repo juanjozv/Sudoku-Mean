@@ -143,14 +143,14 @@ router.route('/newSudoku')
         let playableSudokuValues = {}
         let randomClue = 0
         let clueCount = 0
-        let clue = true
+        let clues = random.rand(17, 81)
         let object = { user: 'default', difficulty: 'random', lastPlayed: '2017-09-09', playableSudoku: [] };
         for (let actualValue of sudokuGen) {
-            randomClue = random.rand(1, 6);
-            clue = (clueCount < 17) ? true : ((randomClue == 3) ? true : false)
+            randomClue = random.rand(1, 5);
+            clue = (clueCount < clues && (randomClue == 3 || randomClue == 1)) ? true : false
             playableSudokuValues = { x: actualValue.row, y: actualValue.col, value: clue ? actualValue.num : 0, isClue: clue }
             object.playableSudoku.push(playableSudokuValues);
-            clueCount++
+            if(clue) clueCount++
         }
         res.json(object);
     });

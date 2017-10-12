@@ -22,7 +22,7 @@ let createFill = (td, tr, id) => {
         maxlength: "1",
         size: "1",
         readonly: "",
-        value: " "
+        value: null
     })
         .appendTo($('<td />')
             .attr({
@@ -140,6 +140,10 @@ class SudokuView {
     }
     getPlayableSudoku() {
         return Array.from({ length: 81 }, (value, i) => this.createClue(i))
+    }
+    hasBegun(){
+        if(!$('#0').val()) return false
+        return true
     }
 }
 
