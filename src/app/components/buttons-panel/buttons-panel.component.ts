@@ -64,22 +64,10 @@ export class ButtonsPanelComponent implements OnInit {
       );
     }
   }
-  loadSudokuInMatrix(id) {
-    this._sudokuService.loadSudoku(id).subscribe(res => { this.repaintMatrix(res); });
-  }
-  repaintMatrix(res) {
-    res.playableSudoku.forEach((e) => {
-      if (!e.isClue) e.value = ' ';
-    });
-    this._sudokuComponent.paintLoadSudokuView(res);
-  }
 
   // Load Saved Games
   repaintLoadMatrix(res) {
-    res.playableSudoku.forEach((e) => {
-      if (e.value == 0) e.value = ' ';
-    });
-    this._sudokuComponent.paintLoadSudokuView(res);
+    this._sudokuComponent.paint(res);
   }
 
   loadSavedGameInMatrix(id) {

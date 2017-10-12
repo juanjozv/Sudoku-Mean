@@ -31,7 +31,7 @@ export class SudokuComponent implements OnInit {
   // Service methods
   createNewSudoku() {
     this._sudokuService.getNewSudoku('leo', 'normal', 'hoy').subscribe(
-      res => this.paintLoadSudokuView(res),
+      res => this.paint(res),
       err => this.createNewSudokuClient()
 
     );
@@ -39,7 +39,7 @@ export class SudokuComponent implements OnInit {
   
   loadSudokuByDifficulty(d){
     this._sudokuService.loadByLevelSudoku(d).subscribe(
-      res =>  this.paintLoadSudokuView(res), 
+      res =>  this.paint(res), 
       err => this.createNewSudokuClient(d)
     );
   }
@@ -60,7 +60,13 @@ export class SudokuComponent implements OnInit {
     );
   } 
   // client methods with server up
-  paintLoadSudokuView(res_) {
+  /*loadSudoku(res_) {
+   /* res_.playableSudoku.forEach(elem => {
+      (!elem.isClue) ? this._matrix[elem.x][elem.y] = ' ' : this._matrix[elem.x][elem.y] = elem.value;
+    });*/
+   /* this._sudokuView.paintLoaded(res_.playableSudoku, this._matrix);
+}*/
+  paint(res_){
     this._sudokuView.paint(res_.playableSudoku, this._matrix);
   }
   

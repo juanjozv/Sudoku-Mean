@@ -75,16 +75,16 @@ class SudokuView {
                 $('#' + (j + 9 * i).toString()).val(num)
             }));
     }
-    // use for load a new sudoku in view and component
+    // use for load an existing in view and component
     paint(playableSudoku, sudoku) {
         playableSudoku.forEach((elem, i) => {
             //clean position of original sudoku
             sudoku[elem.x][elem.y] = elem.isClue ? elem.value : ' '
-             
+
             // clean textfields
             elem.isClue ? $('#' + (elem.y + 9 * elem.x).toString()).prop('disabled', true)
                 .val(elem.value) : $('#' + (elem.y + 9 * elem.x).toString()).prop('disabled', false)
-                    .val(' ')
+                    .val(elem.value == 0 ? ' ' : elem.value)
 
         });
     }
@@ -107,23 +107,23 @@ class SudokuView {
         if (d == 'easy') return 40
         if (d == 'normal') return 26
         if (d == 'hard') return 17
-        else return 81
+        else return random.rand(17, 81);
     }
     generateSudoku(d = 'random', sudoku) {
         let id = "",
             clue = 0, cluesCount = 0, maxClues = this.cluesForLevel(d);
         for (let actualValue of sudokuGen) {
-            clue = random.rand(1, 5)
-            id = '#' + (actualValue.col + 9 * actualValue.row).toString()
-            $(id).val(' ')
-                .prop('disabled', false)
-            sudoku[actualValue.row][actualValue.col] = ' '
-            if ((clue == 3 || clue == 1) && cluesCount < maxClues) {
+            clue = random.rand(1, 5);
+            id = '#' + (actualValue.col + 9 * actualValue.row).toString();
+
+            ((clue == 3 || clue == 1) && cluesCount < maxClues) ?
                 $(id).val(actualValue.num)
-                    .prop('disabled', true)
-                sudoku[actualValue.row][actualValue.col] = actualValue.num
-                cluesCount++
-            }
+                    .prop('disabled', true) && cluesCount++ :
+                $(id).val(' ')
+                    .prop('disabled', false);
+
+            sudoku[actualValue.row][actualValue.col] = ((clue == 3 || clue == 1) && cluesCount < maxClues) ? actualValue.num : ' ';
+
         }
     }
 
