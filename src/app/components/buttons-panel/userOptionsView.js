@@ -88,6 +88,10 @@ class UserOptionsView {
         today = yyyy + '-' + mm + '-' + dd;
         return today;
     }
+    warning(text){
+        $('#warningText').text(text);
+        $('#warningModal').modal();
+    }
 
 }
 

@@ -43,7 +43,7 @@ export class SudokuComponent implements OnInit {
       err => this.createNewSudokuClient(d)
     );
   }
-
+ // Responses of server when you request, they run only with server up 
   checkSudoku() {
 
     let matrixAux = this._sudokuView.getMatrix();
@@ -66,21 +66,27 @@ export class SudokuComponent implements OnInit {
   checkedNotice(_res) {
     this._sudokuView.checkModal(_res.text);
   }
-  //with the server down 
-  reload(sudoku = this._matrix) {
-    this._sudokuView.reload(sudoku);
-  }
-
+  
   // Client algorithms, they run only with server down
   checkSudokuClient() {
     this._sudokuView.checkModal(this._sudokuView.checkSudoku());
+    console.log('Sudoku has checked locally')
   }
   createNewSudokuClient(n = 81) {
     this._sudokuView.generateSudoku(n, this._matrix);
+    console.log('Sudoku has created locally')
   }
   solveSudokuClient() {
     this._sudokuView.solveSudoku(this._matrix);
     console.log('Sudoku has solved locally')
+  }
+
+  //both (server up and down)
+  reload(sudoku = this._matrix) {
+    this._sudokuView.reload(sudoku);
+  }
+  hasBegun(){
+    return this._sudokuView.hasBegun();
   }
 
 }

@@ -36,16 +36,23 @@ export class ButtonsPanelComponent implements OnInit {
     this._userOptionsView.setStorageSudokuId('na', 'true');
   }
   checkSudoku() {
-    this._sudokuComponent.checkSudoku();
+    if (this._sudokuComponent.hasBegun()) this._sudokuComponent.checkSudoku()
+    else this._userOptionsView.warning('You must create a new sudoku!')
   }
   reload() {
-    this._sudokuComponent.reload();
-    this._timeComponent.stopTimer();
-    this._timeComponent.startTimer();
+    if (this._sudokuComponent.hasBegun()) {
+      this._sudokuComponent.reload();
+      this._timeComponent.stopTimer();
+      this._timeComponent.startTimer();
+    }
   }
   solveSudoku() {
-    this._sudokuComponent.solveSudoku();
-    this._timeComponent.showLastTime();
+    if (this._sudokuComponent.hasBegun()) {
+      this._sudokuComponent.solveSudoku();
+      this._timeComponent.showLastTime();
+    }
+    else this._userOptionsView.warning('You must create a new sudoku!')
+
   }
   loadByLevelSudoku(d) {
     this._userOptionsView.setStorageDifficulty(d);
@@ -72,9 +79,9 @@ export class ButtonsPanelComponent implements OnInit {
 
   loadSavedGameInMatrix(id) {
     this._sudokuService.loadSudoku(id).subscribe(
-      res =>  this.repaintLoadMatrix(res),
-      err => this.repaintLoadMatrix(this._userOptionsView.getSudokuIdStorage(id)) 
-      );
+      res => this.repaintLoadMatrix(res),
+      err => this.repaintLoadMatrix(this._userOptionsView.getSudokuIdStorage(id))
+    );
   }
 
   showSudokus(sudokusList) {
@@ -111,17 +118,20 @@ export class ButtonsPanelComponent implements OnInit {
 
     let saveObject = { _id: gameId, user: gameUser, difficulty: gameDifficulty, lastPlayed: gameDate, playableSudoku: matrixAux }
     if (gameUser != "empty") {
-      this._sudokuService.saveSudoku(saveObject, isNewGame).subscribe(
-        res => {
-          this.showSaveModal();
-          this._userOptionsView.setStorageSudokuId(res.sudokuId, 'false');
-          saveObject._id = res.sudokuId;
-          this.saveGameClient(saveObject);
-        },
-        err => { 
-          saveObject._id=window.localStorage.length; 
-          this.saveGameClient(saveObject);
+      if (this._sudokuComponent.hasBegun()) {
+        this._sudokuService.saveSudoku(saveObject, isNewGame).subscribe(
+          res => {
+            this.showSaveModal();
+            this._userOptionsView.setStorageSudokuId(res.sudokuId, 'false');
+            saveObject._id = res.sudokuId;
+            this.saveGameClient(saveObject);
+          },
+          err => {
+            saveObject._id = window.localStorage.length;
+            this.saveGameClient(saveObject);
           });
+      }
+      else this._userOptionsView.warning('You must create a new sudoku!')
     }
   }
   saveGameClient(obj) {
