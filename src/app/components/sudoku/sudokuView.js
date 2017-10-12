@@ -1,9 +1,9 @@
 /**
- * Sudoku
- * @author juanjozv@gmail.com
- * @author osqui.salazar@gmail.com
- * @author manca64@gmail.com
- * @author leogodinezs15@gmail.com
+ * Sudoku Grupo 9  Horario: 1 pm
+ * @author Juan José Zaldívar Vargas
+ * @author Oscar Salazar Lizano
+ * @author Manfred Zúñiga Vargas
+ * @author Leonel Godínez Sánchez
  */
 
 const NEVER = x => false;
@@ -17,13 +17,13 @@ const random = new Random();
 
 let createFill = (td, tr, id) => {
     return $('<input type="int"/>').attr({
-        id: id,
-        class: "hint",
-        maxlength: "1",
-        size: "1",
-        readonly: "",
-        value: null
-    })
+            id: id,
+            class: "hint",
+            maxlength: "1",
+            size: "1",
+            readonly: "",
+            value: null
+        })
         .appendTo($('<td />')
             .attr({
                 class: td
@@ -43,8 +43,8 @@ function* sudokuViewGenerator(start = 0, next = x => x + 1, stop = NEVER) {
             $('#sudoku').append(tr);
             tr = $('<tr />');
             row++;
-            (row % 3 == 0) ? tdBorderClass = 'lox' : tdBorderClass = 'lx';
-            (row % 3 == 0) ? tdNormalClass = 'ox' : tdNormalClass = 'nx';
+            (row % 3 == 0) ? tdBorderClass = 'lox': tdBorderClass = 'lx';
+            (row % 3 == 0) ? tdNormalClass = 'ox': tdNormalClass = 'nx';
         }
         column % 3 == 0 ? td = tdBorderClass : td = tdNormalClass;
         input = createFill(td, tr, column);
@@ -56,26 +56,26 @@ function* sudokuViewGenerator(start = 0, next = x => x + 1, stop = NEVER) {
 
 class SudokuView {
     constructor() {
-        [this.start, this.delta, this.stop] = [0, x => x + 1, x => x > 81];
-    }
-    [Symbol.iterator]() {
-        this.iter = sudokuViewGenerator(this.start, this.delta, this.stop);
-        return this;
-    }
+            [this.start, this.delta, this.stop] = [0, x => x + 1, x => x > 81];
+        }
+        [Symbol.iterator]() {
+            this.iter = sudokuViewGenerator(this.start, this.delta, this.stop);
+            return this;
+        }
     next() {
         return this.iter.next();
     }
     create() {
-        for (let i of this);
-    }
-    // use for reload the sudoku table view with the original sudoku
+            for (let i of this);
+        }
+        // use for reload the sudoku table view with the original sudoku
     reload(sudoku) {
-        sudoku.forEach((row, i) =>
-            row.forEach((num, j) => {
-                $('#' + (j + 9 * i).toString()).val(num)
-            }));
-    }
-    // use for load an existing in view and component
+            sudoku.forEach((row, i) =>
+                row.forEach((num, j) => {
+                    $('#' + (j + 9 * i).toString()).val(num)
+                }));
+        }
+        // use for load an existing in view and component
     paint(playableSudoku, sudoku) {
         playableSudoku.forEach((elem, i) => {
             //clean position of original sudoku
@@ -84,7 +84,7 @@ class SudokuView {
             // clean textfields
             elem.isClue ? $('#' + (elem.y + 9 * elem.x).toString()).prop('disabled', true)
                 .val(elem.value) : $('#' + (elem.y + 9 * elem.x).toString()).prop('disabled', false)
-                    .val(elem.value == 0 ? ' ' : elem.value)
+                .val(elem.value == 0 ? ' ' : elem.value)
 
         });
     }
@@ -92,7 +92,7 @@ class SudokuView {
         return Array.from({ length: 9 }, (row, i) =>
             Array.from({ length: 9 }, (value, j) =>
                 ($('#' + (j + 9 * i).toString()).val() != " ") ? parseInt($('#' + (j + 9 * i).toString()).val()) :
-                    $('#' + (j + 9 * i).toString()).val()));
+                $('#' + (j + 9 * i).toString()).val()));
     }
     checkModal(_res) {
         $('#msgCheck').text(_res);
@@ -111,16 +111,18 @@ class SudokuView {
     }
     generateSudoku(d = 'random', sudoku) {
         let id = "",
-            clue = 0, cluesCount = 0, maxClues = this.cluesForLevel(d);
+            clue = 0,
+            cluesCount = 0,
+            maxClues = this.cluesForLevel(d);
         for (let actualValue of sudokuGen) {
             clue = random.rand(1, 5);
             id = '#' + (actualValue.col + 9 * actualValue.row).toString();
 
             ((clue == 3 || clue == 1) && cluesCount < maxClues) ?
-                $(id).val(actualValue.num)
-                    .prop('disabled', true) && cluesCount++ :
+            $(id).val(actualValue.num)
+                .prop('disabled', true) && cluesCount++:
                 $(id).val(' ')
-                    .prop('disabled', false);
+                .prop('disabled', false);
 
             sudoku[actualValue.row][actualValue.col] = ((clue == 3 || clue == 1) && cluesCount < maxClues) ? actualValue.num : ' ';
 
@@ -141,8 +143,8 @@ class SudokuView {
     getPlayableSudoku() {
         return Array.from({ length: 81 }, (value, i) => this.createClue(i))
     }
-    hasBegun(){
-        if(!$('#0').val()) return false
+    hasBegun() {
+        if (!$('#0').val()) return false
         return true
     }
 }

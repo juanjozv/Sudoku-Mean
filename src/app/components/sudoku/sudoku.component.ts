@@ -1,9 +1,9 @@
 /**
- * Sudoku
- * @author juanjozv@gmail.com
- * @author osqui.salazar@gmail.com
- * @author manca64@gmail.com
- * @author leogodinezs15@gmail.com
+ * Sudoku Grupo 9  Horario: 1 pm
+ * @author Juan José Zaldívar Vargas
+ * @author Oscar Salazar Lizano
+ * @author Manfred Zúñiga Vargas
+ * @author Leonel Godínez Sánchez
  */
 
 import { Component, OnInit } from '@angular/core';
@@ -28,6 +28,10 @@ export class SudokuComponent implements OnInit {
   ngOnInit() {
     this._sudokuView.create();
 
+  }
+
+  get Matrix() {
+    return this._matrix; 
   }
   // Service methods
   createNewSudoku() {
