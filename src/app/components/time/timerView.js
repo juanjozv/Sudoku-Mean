@@ -35,7 +35,7 @@ class Timer {
         this.timerID = setInterval(this.setTime, 10);
     }
     stopTimer() {
-        totalSeconds = 358000;
+        totalSeconds = 0;
         $('#milis').text('00');
         $('#seconds').text('00');
         $('#minutes').text('00');
