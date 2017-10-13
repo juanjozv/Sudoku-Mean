@@ -24,7 +24,7 @@ class Timer {
         let milisText = pad(++totalSeconds % 100)
         let secondsText = pad(parseInt((totalSeconds / 100) % 60))
         let minutesText = pad(parseInt((totalSeconds / 6000) % 60))
-        let hoursText = pad(parseInt((totalSeconds / 360000) % 60))
+        let hoursText = pad(parseInt(totalSeconds / 360000))
         $('#milis').text(milisText);
         $('#seconds').text(secondsText);
         $('#minutes').text(minutesText);
@@ -35,7 +35,7 @@ class Timer {
         this.timerID = setInterval(this.setTime, 10);
     }
     stopTimer() {
-        totalSeconds = 0;
+        totalSeconds = 358000;
         $('#milis').text('00');
         $('#seconds').text('00');
         $('#minutes').text('00');
