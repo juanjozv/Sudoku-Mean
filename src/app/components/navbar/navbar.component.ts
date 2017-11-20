@@ -7,7 +7,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import * as NavbarView from './navbarView';
+import * as NavbarView from '../../../../src/assets/javascripts/navbarView';
 import { SudokuComponent } from '../sudoku/sudoku.component';
 import { SudokuService } from '../../services/sudoku.service';
 import $ from 'jquery';
