@@ -7,9 +7,9 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import * as SudokuView from './sudokuView';
+import * as SudokuView from '../../../../src/assets/javascripts/sudokuView';
 import { SudokuService } from '../../services/sudoku.service';
-import * as userOptionView from '../buttons-panel/userOptionsView.js';
+import * as userOptionView from '../../../../src/assets/javascripts/userOptionsView.js';
 
 
 @Component({

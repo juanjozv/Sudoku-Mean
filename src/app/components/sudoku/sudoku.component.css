@@ -67,3 +67,26 @@ a:hover {
 .hint {
     color: black;
 }
+
+.valTd {
+    border: black solid 1px;
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    text-align: center;
+}
+.valHint {
+    color: green;
+    background-color: white;
+    border: 0px solid black;
+    width: 40px;
+    height: 40px;
+    font-weight: normal;
+    font-size: 22px;
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+    text-align: center;
+    vertical-align: middle;
+}
+.valHint {
+    color: black;
+}

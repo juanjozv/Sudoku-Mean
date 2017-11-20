@@ -10,7 +10,7 @@ let totalSeconds = 0;
 
 let pad = val => {
     let valString = val + "";
-    return valString.length < 2 ? "0" + valString : valString
+    return valString.length < 2 ? "0" + valString : valString;
 }
 
 class Timer {
@@ -48,4 +48,4 @@ class Timer {
     }
 }
 
-module.exports = Timer
+module.exports = Timer;

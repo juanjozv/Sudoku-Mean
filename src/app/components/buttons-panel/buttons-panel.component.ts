@@ -11,7 +11,7 @@ import { SudokuService } from '../../services/sudoku.service';
 import { SudokuComponent } from '../sudoku/sudoku.component';
 import { TimeComponent } from '../time/time.component';
 import $ from 'jquery';
-import * as UserOptionsView from './userOptionsView';
+import * as UserOptionsView from '../../../../src/assets/javascripts/userOptionsView';
 // In case of adding a new component in SudokuComponent, it should be added here too.
 @Component({
   selector: 'app-buttons-panel',

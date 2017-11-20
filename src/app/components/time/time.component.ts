@@ -7,7 +7,7 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import * as Timer from './timerView';
+import * as Timer from '../../../../src/assets/javascripts/timerView';
 import { ElementRef } from '@angular/core';
 
 @Component({
