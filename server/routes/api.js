@@ -20,7 +20,11 @@ const Solver = new SudokuSolver();
 const sudokuGen = new SudokuGen(9);
 
 // Connection to the database
-mongoose.connect('mongodb://localhost/sudokus', {
+/*mongoose.connect('mongodb://localhost/sudokus', {
+    useMongoClient: true
+});*/
+
+mongoose.connect('mongodb://heroku_k73063jf:1ofp89rqrqemeb7lvo32sm5uvs@ds113626.mlab.com:13626/heroku_k73063jf', {
     useMongoClient: true
 });
 
@@ -150,7 +154,7 @@ router.route('/newSudoku')
             clue = (clueCount < clues && (randomClue == 3 || randomClue == 1)) ? true : false
             playableSudokuValues = { x: actualValue.row, y: actualValue.col, value: clue ? actualValue.num : 0, isClue: clue }
             object.playableSudoku.push(playableSudokuValues);
-            if(clue) clueCount++
+            if (clue) clueCount++
         }
         res.json(object);
     });
